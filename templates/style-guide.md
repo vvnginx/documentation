@@ -417,7 +417,7 @@ If you decide to include a screenshot, follow these guidelines:
 - Use simple arrows and rectangles to highlight important items. Use a high-contrast color to make the annotations stand out.
 - Include a description (`<img alt>` text) for the screenshot that provides a brief summary of the content and context. This description helps screen readers describe the image to visually impaired users. For example, "Area chart titled 'NGINX Active Connections' showing the number of active connections over time for the current date. The x-axis represents the time of day, and the y-axis represents the number of connections, ranging from 0 to 10,000. The chart is color-coded with different shades to indicate varying levels of connections." For examples and guidelines for effective alt text, see the BBC's useful guide [How to write text descriptions (alt text)](https://www.bbc.co.uk/gel/how-to-write-text-descriptions-alt-text).
 
-### Gudelines for alternative text
+### Guidelines for alternative text
 
 Alt text supports accessibilty. Screen readers read alt text to describe images to users. Images that are not available are replaced by alt text.
 
@@ -442,8 +442,6 @@ When you compose alt text, follow these guidelines:
 - Do not use inline styling like bold, italics, or backticks.
   Screen readers read `**text**` as `star star text star star`.
 - Use an empty alt text tag (`alt=""`) instead of omitting the tag altogether when the image does not add any unique information to the page. For example, when the image is decorative or is already fully described in the body text or caption. An empty alt tag tells assistive technologies that you have omitted the text intentionally, while a missing alt tag is ambiguous.
-
-
 
 ## Sensitive and personally identifying information
 
