@@ -1,5 +1,5 @@
 ---
-title: Working With Language Modules
+title: Working with language modules
 weight: 700
 toc: true
 ---
@@ -20,7 +20,7 @@ The commands in this document starting with a hash (#) must be run as root or
 with superuser privileges.
 {{< /note >}}
 
-## External Language Modules {#modules-ext}
+## External language modules {#modules-ext}
 
 External modules are regular language libraries or packages that you install
 like any other. They provide common web functionality, communicating with Unit
@@ -44,7 +44,7 @@ For WebAssembly, Unit delegates bytecode execution to the
 module or during a
 [source build]({{< relref "/unit/howto/source.md#source-wasm" >}}).
 
-## Embedded Language Modules {#modules-emb}
+## Embedded language modules {#modules-emb}
 
 Embedded modules are shared libraries that Unit loads at startup. Query Unit
 to find them in your system:

@@ -1,5 +1,5 @@
 ---
-title: NGINX Integration
+title: NGINX integration
 toc: true
 weight: 500
 ---
@@ -74,7 +74,7 @@ listener's **client_ip** option.
 For details, see the [NGINX documentation](https://nginx.org). Commercial
 support and advanced features are [also available](https://www.nginx.com).
 
-## Securely Proxying Unit's Control API {#nginx-secure-api}
+## Securely proxying Unit's control API {#nginx-secure-api}
 
 By default, Unit exposes its
 [control API]({{< relref "/unit/controlapi.md#configuration-mgmt" >}})

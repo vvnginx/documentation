@@ -17,7 +17,7 @@ The commands in this document starting with a hash (#) must be run as root or
 with superuser privileges.
 {{< /note >}}
 
-## Update Unit Regularly {#security-update}
+## Update Unit regularly {#security-update}
 
 **Rationale**: Each release introduces [bug fixes and new
 features]({{< relref "/unit/changes.md" >}}) that improve your installation's security.
@@ -49,7 +49,7 @@ Specific upgrade steps depend on your installation method:
 
 </details>
 
-## Secure Socket and State {#security-socket-state}
+## Secure socket and state {#security-socket-state}
 
 **Rationale**: Your
 [control socket and state directory]({{< relref "/unit/howto/source.md#source-dir" >}})
@@ -189,7 +189,7 @@ configure SSL certificate bundles for your Unit installation.
 
 **Actions**: For details, see [SSL/TLS configuration]({{< relref "/unit/certificates.md#configuration-ssl" >}}) and [TLS with certbot]({{< relref "/unit/howto/certbot.md" >}}).
 
-## Error-Proof Your Routes {#security-routes}
+## Error-proof your routes {#security-routes}
 
 **Rationale**: Arguably, [routes]({{< relref "/unit/configuration.md#configuration-routes" >}})
 are the most flexible and versatile part of the Unit configuration. Thus, they must be as
@@ -227,7 +227,7 @@ Some considerations:
 
 </details>
 
-## Protect App Data {#security-apps}
+## Protect app data {#security-apps}
 
 **Rationale**: Unit's architecture involves many processes that operate
 together during app delivery; improper process permissions can make sensitive
@@ -649,7 +649,7 @@ shared during routing.
 
 </details>
 
-## Prune Debug and Access Logs {#security-logs}
+## Prune debug and access logs {#security-logs}
 
 **Rationale**: Unit stores potentially sensitive data in its general and access
 logs; their size can also become a concern if debug mode is enabled.
@@ -753,7 +753,7 @@ ACLs.
 
 </details>
 
-## Add Restrictions, Isolation {#security-isolation}
+## Add restrictions, isolation {#security-isolation}
 
 **Rationale**: If the underlying OS allows, Unit provides features that create an
 additional level of separation and containment for your apps, such as:

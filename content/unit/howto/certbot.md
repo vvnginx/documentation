@@ -16,7 +16,7 @@ The commands in this document starting with a hash (#) must be run as root or
 with superuser privileges.
 {{< /note >}}
 
-## Generating Certificates
+## Generating certificates
 
 1. Install [Unit]({{< relref "/unit/installation.md#installation-precomp-pkgs" >}}) on your website's server.
 
@@ -155,7 +155,7 @@ with superuser privileges.
          ...
    ```
 
-## Renewing Certificates
+## Renewing certificates
 
 Certbot enables renewing the certificates [manually](https://eff-certbot.readthedocs.io/en/stable/using.html#renewing-certificates)
 or [automatically](https://eff-certbot.readthedocs.io/en/stable/using.html#automated-renewals).

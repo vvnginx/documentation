@@ -53,7 +53,7 @@ also, see a more elaborate discussion
 
 Now for a few detailed scenarios.
 
-## Apps in a Containerized Unit {#docker-apps-containerized-unit}
+## Apps in a containerized Unit {#docker-apps-containerized-unit}
 
 Suppose we have a web app with a few dependencies, say
 [Flask`s]({{< relref "/unit/howto/frameworks/flask.md" >}}) official **hello, world** app:
@@ -243,7 +243,7 @@ $ export UNIT=$(                                                         \
 ```
 
 
-## Containerized Apps {#docker-apps}
+## Containerized apps {#docker-apps}
 
 Suppose you have a Unit-ready
 [Express]({{< relref "/unit/howto/frameworks/express.md" >}})
@@ -399,7 +399,7 @@ $ docker exec -ti $UNIT curl -X PUT -d '"/www/newapp/"'  \
 This approach is applicable to any Unit-supported apps with external
 dependencies.
 
-## Multilanguage Images {#docker-multi}
+## Multilanguage images {#docker-multi}
 
 Earlier, Unit had a **-full** Docker image with modules for all supported
 languages, but it was discontinued with version 1.22.0. If you still need a
@@ -442,7 +442,7 @@ Instead of packages, you can build custom
 [modules]({{< relref "/unit/howto/source.md#source-modules" >}});
 use these **Dockerfile.\*** [templates](https://github.com/nginx/unit/tree/master/pkg/docker) as reference.
 
-## Startup Customization {#docker-startup}
+## Startup customization {#docker-startup}
 
 Finally, you can customize the way Unit starts in a container by adding a new
 Dockerfile layer:

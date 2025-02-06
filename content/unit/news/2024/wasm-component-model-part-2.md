@@ -56,7 +56,7 @@ For more information about Wasmtime and installing it, see their [GitHub reposit
 
 Once we have all the tools in place, we can create the Rust projects.
 
-(tutorial-rust-based-wasm-component)=
+<a name="tutorial-rust-based-wasm-component"></a>
 
 ### Using the **wasi** Rust library
 

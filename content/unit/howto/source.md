@@ -379,7 +379,6 @@ or support for certain features:
 {{</bootstrap-table>}}
 
 
-(source-config-src-pcre)=
 <a name="source-config-src-pcre"></a>
 
 By default, Unit relies on the locally installed version of the [PCRE](https://www.pcre.org) library to support regular expressions in

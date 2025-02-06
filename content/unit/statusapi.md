@@ -70,6 +70,10 @@ Example:
 }
 ```
 
+---
+
+## Modules
+
 Each item in the **modules** object lists one of the currently loaded language
 modules, the installed version (or versions) of the module, and the path to the
 module file:
@@ -84,6 +88,9 @@ module file:
 
 {{</bootstrap-table>}}
 
+---
+
+## Connections
 
 The **connections** object offers the following Unit instance metrics:
 
@@ -97,8 +104,6 @@ The **connections** object offers the following Unit instance metrics:
 | **closed** | Integer; total closed connections during the instance's lifetime. |
 
 {{</bootstrap-table>}}
-
-
 
 Example:
 
@@ -117,6 +122,9 @@ refer to
 [Configuration Settings]({{< relref "/unit/configuration.md#configuration-stngs" >}}).
 {{< /note >}}
 
+---
+
+## Requests
 
 The **requests** object currently exposes a single instance-wide metric:
 
@@ -128,8 +136,6 @@ The **requests** object currently exposes a single instance-wide metric:
 
 {{</bootstrap-table>}}
 
-
-
 Example:
 
 ```json
@@ -137,6 +143,10 @@ Example:
     "total": 1307
 }
 ```
+
+---
+
+## Applications
 
 Each item in **applications** describes an app currently listed in the
 **/config/applications**
@@ -150,8 +160,6 @@ Each item in **applications** describes an app currently listed in the
 | **requests**  | Object; similar to **/status/requests**, but includes only the data for a specific app. |
 
 {{</bootstrap-table>}}
-
-
 
 Example:
 
@@ -170,6 +178,10 @@ Example:
     }
 }
 ```
+
+---
+
+## Processes
 
 The **processes** object exposes the following per-app metrics:
 

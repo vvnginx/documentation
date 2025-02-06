@@ -90,7 +90,7 @@ the [control API]({{< relref "/unit/controlapi.md" >}}) for details:
 curl --unix-socket /path/to/control.unit.sock http://localhost/config/routes/2  # The step listed in the log
 ```
 
-### Debug Events {#troubleshooting-dbg-log}
+### Debug events {#troubleshooting-dbg-log}
 
 Unit's log can be set to record **[debug]**-level events; the steps to enable this
 mode vary by install method.
@@ -150,7 +150,7 @@ Then recompile and reinstall Unit and your
 {{< /tabs >}}
 
 
-## Core Dumps {#troubleshooting-core-dumps}
+## Core dumps {#troubleshooting-core-dumps}
 
 Core dumps help us investigate crashes; attach them when
 [reporting an issue]({{< relref "/unit/troubleshooting.md#troubleshooting-support" >}}).
@@ -308,7 +308,7 @@ After a crash, locate the core dump file:
 {{% /tab %}}
 {{< /tabs >}}
 
-## Getting Support {#troubleshooting-support}
+## Getting support {#troubleshooting-support}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
