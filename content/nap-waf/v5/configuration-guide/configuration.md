@@ -37,6 +37,7 @@ For more information on the NGINX App Protect WAF security features, see [NGINX 
 |[XFF headers & trust](#xff-headers-and-trust) | Disabled by default. User can enable it and optionally add a list of custom XFF headers. |
 |[gRPC Protection](#grpc-protection-for-unary-traffic) | gRPC content profile detects malformed content, parses well-formed content, and extracts the text fields for detecting attack signatures and disallowed meta-characters. In addition, it enforces size restrictions and prohibition of unknown fields. The Interface Definition Language (IDL) files for the gRPC API must be attached to the profile. gRPC protection can be on [unary](#grpc-protection-for-unary-traffic) or [bidirectional](#grpc-protection-for-bidirectional-streaming) traffic.|
 |[Secure Traffic Between NGINX and App Protect Enforcer using mTLS](#secure-traffic-between-nginx-and-app-protect-enforcer-using-mtls) | Disabled by default. You can manually configure mTLS to secure the traffic between NGINX and App Protect Enforcer.|
+|[Brute Force Attack Preventions](#brute-force-attack-preventions) | Configure brute-force-attack-preventions parameters to secured areas of a web application from brute force attacks.|
 
 ### Disallowed File Types
 
@@ -788,6 +789,116 @@ To enable mTLS in NGINX, you need to perform the following steps:
 
     Refer to the example for mTLS deployment in the admin guide, whether you're using [Docker]({{< relref "/nap-waf/v5/admin-guide/deploy-on-docker.md#docker-compose-file-with-mtls" >}}) or [Kubernetes]({{< relref "/nap-waf/v5/admin-guide/deploy-on-kubernetes.md#mtls-deployment" >}}).
     
+## Brute Force Attack Preventions
+
+### Overview
+
+Brute force attacks are attempts to break in to secured areas of a web application by trying exhaustive,
+systematic, username/password combinations to discover legitimate authentication credentials. 
+To prevent brute force attacks, NGINX App Protect WAF monitors IP addresses, usernames, and the number of failed login attempts beyond a maximum threshold. 
+When brute force patterns are detected, the NGINX App Protect WAF policy either trigger an alarm or block the attack if the failed 
+login attempts reached a maximum threshold for a specific username or coming from a specific IP address.
+To enable brute force protection, at least one login page must be created.
+
+---
+
+### Login page policy example
+
+A login page specifies the login URL that users must pass through to get authenticated. The configuration of a login URL includes the URL itself, the username and passwords parameters and the validation criteria (how we know that a login was successful or failed)
+```json
+	    "login-pages": [
+            {
+               "accessValidation" : {
+                  "responseContains": "Success"
+               },
+               "authenticationType": "form",
+               "url" : {
+                  "method" : "*",
+                  "name" : "/html_login",
+                  "protocol" : "http",
+                  "type" : "explicit"
+               },
+               "usernameParameterName": "username",
+               "passwordParameterName": "password"
+            }
+        ]
+``` 
+             
+{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< relref "/nap-waf/v5/declarative-policy/policy/#policy/login-pages" >}}). {{< /note >}}
+
+---
+
+### Brute force policy example
+
+Example1: A single brute force configuration is applied universally to all login pages.
+```json
+{
+    "policy": {
+        "name": "BruteForcePolicy",
+        "template": {
+            "name": "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "brute-force-attack-preventions" : [
+            {
+               "bruteForceProtectionForAllLoginPages" : true,
+               "loginAttemptsFromTheSameIp" : {
+                  "action" : "alarm",
+                  "enabled" : true,
+                  "threshold" : 20
+               },
+               "loginAttemptsFromTheSameUser" : {
+                  "action" : "alarm",
+                  "enabled" : true,
+                  "threshold" : 3
+               },
+               "reEnableLoginAfter" : 3600,
+               "sourceBasedProtectionDetectionPeriod" : 3600
+            }
+        ]
+    }
+}
+```
+
+Example2: Different brute force configurations can be defined for individual login pages.
+```json
+{
+    "policy": {
+        "name": "BruteForcePolicySpec",
+        "template": {
+            "name": "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "brute-force-attack-preventions" : [
+            {
+               "bruteForceProtectionForAllLoginPages" : false,
+               "loginAttemptsFromTheSameIp" : {
+                  "action" : "alarm",
+                  "enabled" : true,
+                  "threshold" : 20
+               },
+               "loginAttemptsFromTheSameUser" : {
+                  "action" : "alarm",
+                  "enabled" : true,
+                  "threshold" : 3
+               },
+               "reEnableLoginAfter" : 3600,
+               "sourceBasedProtectionDetectionPeriod" : 3600,
+               "url": {
+                 "method": "*",
+                 "name": "/html_login",
+                 "protocol": "http"
+		       }
+            }
+        ],
+
+    }
+}
+```
+{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< relref "/nap-waf/v5/declarative-policy/policy/#policy/brute-force-attack-preventions" >}}). {{< /note >}}
+
 ## Custom Dimensions Log Entries
 
 ### Overview
@@ -858,7 +969,6 @@ To enable mTLS in NGINX, you need to perform the following steps:
 
 This table summarizes the nginx.conf directives for NGINX App Protect WAF functionality.
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Directive Name | Syntax | Functionality | nginx.conf Contexts | Example |
 | ---| ---| ---| ---| --- |
 |load_module | load_module <library_file_path> | NGINX directive to load the App Protect module. It must be invoked with the App Protect library path | Global | load_module modules/ngx_http_app_protect_module.so |
@@ -868,7 +978,6 @@ This table summarizes the nginx.conf directives for NGINX App Protect WAF functi
 |app_protect_security_log_enable | app_protect_security_log_enable on &#124; off | Whether to enable the App Protect per-request log at the respective context. | HTTP, Server, Location | app_protect_security_log_enable on |
 |app_protect_security_log | app_protect_security_log <file_path> <destination> | Specifies the per-request logging: what to log and where | HTTP, Server, Location | app_protect_security_log /config/waf/log_illegal.tgz syslog:localhost:522 |
 |app_protect_custom_log_attribute | app_protect_custom_log_attribute <key_value> | Specifies the assigned location/server/http dimension of each request. | HTTP, Server, Location | app_protect_custom_log_attribute ‘environment' 'env1' |
-{{</bootstrap-table>}}
 
 #### Failure Mode
 
@@ -931,7 +1040,11 @@ In the cases where decompression fails,  NGINX App Protect WAF will continue wit
 
 ---
 
-## Policy Converter
+## Converter tools
+
+NGINX App Protect WAF includes a number of tools that can be used to facilitate the process of porting existing resources or configuration files from the BIG-IP for use in the NGINX App Protect WAF environment. Note that these tools are available in the compiler package, and do not require a full installation of NGINX App Protect WAF or NGINX Plus.
+
+### Policy Converter
 
 The NGINX App Protect WAF v5 Policy Converter tool `/opt/app_protect/bin/convert-policy` is used to convert XML policies to JSON format. The converted JSON policy is based on the NGINX App Protect WAF policy base template and contains the minimal differences to it in JSON declarative policy format.
 
@@ -943,7 +1056,7 @@ Using the tool:
 /opt/app_protect/bin/convert-policy 
 ```
 
-### Convert Policy using Command Line Interface (CLI Usage)
+#### Convert Policy using Command Line Interface (CLI Usage)
 
 The input policy can also be converted using convert-policy as a CLI tool from within NGINX App Protect WAF Converter container by using the following commands:
 
@@ -957,7 +1070,7 @@ docker run -it --rm \
   --full-export
 ```
 
-### Command Line Options
+#### Command Line Options
 
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Field Name   | Notes | 
@@ -968,6 +1081,173 @@ docker run -it --rm \
 | --logging-profile | Filename of JSON Logging Profile (pre-converted to JSON from tmsh syntax) |
 | --dos-profile | Filename of JSON DoS Profile (pre-converted to JSON from tmsh syntax) |
 | --full-export | If specified, the full policy with all entities will be exported. Otherwise, only entities that differ from the template will be included.<br> Default for the CLI is not specific (only differing entities). <br> Default for the REST endpoint above is "--full-export" (you can not override this).|{{</bootstrap-table>}}
+
+### User Defined Signatures Converter
+
+The User Defined Signatures Converter tool `/opt/app_protect/bin/convert-signatures` takes a User Defined Signatures XML file as input and exports the content as a JSON file suitable for use in an NGINX App Protect WAF environment.
+
+The tool can optionally accept a tag argument as an input. Otherwise, the default tag value `user-defined-signatures` is assigned to the exported JSON file.
+
+Note that the User Defined signatures XML file can be obtained by exporting the signatures from a BIG-IP device.
+
+Using the tool:
+```shell
+/opt/app_protect/bin/convert-signatures
+```
+
+Output:
+```shell
+USAGE:
+    /opt/app_protect/bin/convert-signatures
+
+Required arguments:
+    --outfile|o='/path/to/signatures.json'
+        File name to write JSON format export
+        Can also be set via an environment variable: EXPORT_FILE
+    --infile|i='/path/to/signatures.xml'
+        Advanced WAF/ASM User Defined Signatures file to Convert
+        Can also be set via an environment variable: IMPORT_FILE
+
+Optional arguments:
+    --tag|t='mytag'
+        Signature Tag to associate with User Defined Signatures.
+        If no tag is specified in the XML file, a default tag of 'user-defined-signatures' will be assigned.
+        Can also be set via an environment variable: TAG
+    --format|f='json'
+        Desired output format for signature file. Default 'json'
+        Supported formats: 'json'
+
+Optionally, using --help will issue this help message.
+```
+
+Example of generating a user defined signature JSON file (with default tag):
+```shell
+docker run -v `pwd`:`pwd` -w `pwd` --entrypoint /opt/app_protect/bin/convert-signatures docker_img:latest -i /path/to/signatures.xml -o /path/to/signatures.json | jq
+```
+
+Output:
+```json
+{
+    "filename": "/path/to/signatures.json",
+    "file_size": 1602,
+    "completed_successfully": true
+}
+```
+
+Example of the contents of the output file (displayed and piped into `jq`):
+```json
+{
+    "tag": "user-defined-signatures",
+    "signatures": [
+        {
+            "accuracy": "high",
+            "risk": "high",
+            "systems": [],
+            "rule": "content:\"header1\"; nocase;",
+            "description": "",
+            "signatureType": "request",
+            "signatureId": "300000000",
+            "revision": "1",
+            "lastUpdateMicros": 1731425468000000,
+            "name": "sig_1_header",
+            "attackType": {
+                "name": "Abuse of Functionality"
+            }
+        },
+        {
+            "signatureId": "300000002",
+            "signatureType": "request",
+            "attackType": {
+                "name": "Cross Site Scripting (XSS)"
+            },
+            "name": "sig_3_uri",
+            "lastUpdateMicros": 1731425631000000,
+            "revision": "1",
+            "risk": "high",
+            "accuracy": "high",
+            "description": "",
+            "rule": "uricontent:\"<script>\"; nocase;",
+            "systems": [
+                {
+                    "name": "Nginx"
+                }
+            ]
+        },
+        {
+            "name": "sig_2_param",
+            "attackType": {
+                "name": "Abuse of Functionality"
+            },
+            "lastUpdateMicros": 1731425549000000,
+            "revision": "1",
+            "signatureId": "300000001",
+            "signatureType": "request",
+            "description": "",
+            "rule": "valuecontent:!\"param\"; nocase; httponly; norm;",
+            "systems": [],
+            "accuracy": "high",
+            "risk": "high"
+        },
+        {
+            "systems": [
+                {
+                    "name": "Apache"
+                },
+                {
+                    "name": "Unix/Linux"
+                },
+                {
+                    "name": "Proxy Servers"
+                },
+                {
+                    "name": "Django"
+                }
+            ],
+            "description": "",
+            "rule": "valuecontent:\"json123\"; nocase; jsononly; norm;",
+            "risk": "high",
+            "accuracy": "high",
+            "lastUpdateMicros": 1731425782000000,
+            "revision": "1",
+            "attackType": {
+                "name": "Server-Side Request Forgery (SSRF)"
+            },
+            "name": "sig_5_",
+            "signatureType": "request",
+            "signatureId": "300000004"
+        },
+        {
+            "description": "",
+            "rule": "uricontent:\"etc\"; nocase;",
+            "systems": [
+                {
+                    "name": "Microsoft Windows"
+                },
+                {
+                    "name": "Unix/Linux"
+                }
+            ],
+            "accuracy": "high",
+            "risk": "high",
+            "name": "sig_4_",
+            "attackType": {
+                "name": "Path Traversal"
+            },
+            "lastUpdateMicros": 1731425708000000,
+            "revision": "1",
+            "signatureId": "300000003",
+            "signatureType": "request"
+        }
+    ]
+}
+```
+
+Example of generating a user defined signature JSON file (with custom tag):
+```shell
+docker run -v `pwd`:`pwd` -w `pwd` --entrypoint /opt/app_protect/bin/convert-signatures docker_img:latest -i /path/to/signatures.xml -o /path/to/signatures.json --tag "MyTag" | jq
+```
+
+Note that if the script is run without the required switches and their corresponding arguments, it will display the help message.
 
 ---
 
