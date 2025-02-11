@@ -1,4 +1,4 @@
 ---
-title: News of 2025
+title: 2025
 weight: 100
 ---

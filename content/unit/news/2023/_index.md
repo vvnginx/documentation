@@ -1,4 +1,4 @@
 ---
-title: News of 2023
+title: 2023
 weight: 300
 ---

@@ -2407,7 +2407,7 @@ Next, install Unit and the PHP modules you want:
 
 | Runtime details                                | Description                                   |
 |-------------------------------------|-----------------------------------------------|
-| Control :ref:`socket <source-startup>` | **/run/unit/control.sock**                   |
+| Control [socket]({{< relref "/unit/howto/source.md#source-startup" >}}) | **/run/unit/control.sock**                   |
 | Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}}) | **/var/log/unit/unit.log** |
 | Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **nobody** |
 

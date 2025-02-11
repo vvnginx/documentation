@@ -235,8 +235,8 @@ Packages:
 # pkg install pcre
 ```
 
-Also, use `gmake` instead of `make` when :ref:`building
-and installing <source-bld-src>` Unit on Solaris.
+Also, use `gmake` instead of `make` when [building
+and installing]({{< relref "/unit/howto/source.md#source-bld-src" >}}) Unit on Solaris.
 
 {{% /tab %}}
 
