@@ -44,7 +44,7 @@ The goal is to create a set of rules that will result in client requests being s
 Begin by deploying the `coffee-v1`, `coffee-v2` and `coffee-v3` applications:
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/examples/advanced-routing/coffee.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/advanced-routing/coffee.yaml
 ```
 
 ---
@@ -218,7 +218,7 @@ Let's deploy a different set of applications now called `tea` and `tea-post`. Th
 ### Deploy the Tea applications
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/examples/advanced-routing/tea.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/advanced-routing/tea.yaml
 ```
 
 ---
