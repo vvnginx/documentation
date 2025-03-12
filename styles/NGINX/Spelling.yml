@@ -1,5 +1,0 @@
-extends: spelling
-message: "Spelling error: '%s'."
-level: error
-code: false
-ignorecase: true
