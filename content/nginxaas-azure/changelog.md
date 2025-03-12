@@ -3,6 +3,8 @@ title: "Changelog"
 weight: 900
 toc: true
 docs: "DOCS-870"
+url: /nginxaas/azure/changelog/
+
 ---
 
 Learn about the latest updates, new features, and resolved bugs in F5 NGINX as a Service for Azure.
@@ -10,6 +12,12 @@ Learn about the latest updates, new features, and resolved bugs in F5 NGINX as a
 To see a list of currently active issues, visit the [Known issues]({{< relref "/nginxaas-azure/known-issues.md" >}}) page.
 
 To review older entries, visit the [Changelog archive]({{< relref "/nginxaas-azure/changelog-archive" >}}) section.
+
+## March 5, 2025
+
+- {{% icon-info %}} **Retirement of Standard Plan**
+
+   The `Standard` plan for NGINXaaS for Azure has been retired, and you can no longer use it to create new deployments. If you have a deployment running on the `Standard` plan, consider [migrating]({{< relref "/nginxaas-azure/troubleshooting/migrate-from-standard.md">}}) it to the [`Standard V2 plan`]({{< relref "/nginxaas-azure/billing/overview.md#standard-v2-plan" >}}) to access new features such as NGINX App Protect WAF and additional listen ports. Plan migration does not incur downtime.
 
 ## February 10, 2025
 
