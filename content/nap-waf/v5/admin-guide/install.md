@@ -1,6 +1,6 @@
 ---
 title: Installing NGINX App Protect WAF
-weight: 400
+weight: 200
 toc: true
 type: how-to
 product: NAP-WAF

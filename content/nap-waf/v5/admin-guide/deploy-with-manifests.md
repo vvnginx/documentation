@@ -1,6 +1,6 @@
 ---
 title: Deploy NGINX App Protect WAF with Manifests
-weight: 300
+weight: 400
 toc: true
 type: how-to
 product: NAP-WAF

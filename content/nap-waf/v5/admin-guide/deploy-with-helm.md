@@ -1,6 +1,6 @@
 ---
 title: Deploy NGINX App Protect WAF with Helm
-weight: 200
+weight: 300
 toc: true
 type: how-to
 product: NAP-WAF
