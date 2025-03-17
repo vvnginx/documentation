@@ -180,6 +180,8 @@ If that certificate is managed and is part of a Config Sync Group, that change a
 
 {{< warning >}} Be cautious if you want to delete certificates that are being used by an instance or a Config Sync Group. Deleting such certificates leads to failure in affected NGINX deployments. {{< /warning >}}
 
+Alternatively, if you want to keep the managed certificate, you can delete its deployment from individual Instances or Config Sync Groups.
+
 ## Managed and unmanaged certificates
 
 If you register an instance to NGINX One Console, as described in [Add your NGINX instances to NGINX One]({{< relref "/nginx-one/getting-started.md#add-your-nginx-instances-to-nginx-one" >}}), and the associated SSL/TLS certificates:
