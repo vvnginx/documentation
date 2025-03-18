@@ -13,7 +13,6 @@ March 18th, 2025
 
 ## New features
 
-- NGINX App Protect WAF Enforcer now supports multiple signature versions
 - Changed the maximum memory of the XML processing engine to 8GB
 - Upgraded the Go compiler to 1.23.7
 
