@@ -107,8 +107,8 @@ with superuser privileges.
    ```
 
    ```console
-   # curl -X PUT --data-binary @bundle1.pem  # Certificate bundle's filename \
-         --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+   # curl -X PUT --data-binary @bundle1.pem \ # Certificate bundle's filename
+         --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
          http://localhost/certificates/certbot1  # Certificate bundle name in Unit's configuration
 
    {
@@ -121,8 +121,8 @@ with superuser privileges.
 
    ```console
    # curl -X PUT --data-binary \
-         '{"pass": "applications/ssl_app", "tls": {"certificate": "certbot1"}}'  # Certificate bundle name in Unit's configuration \
-         --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+         '{"pass": "applications/ssl_app", "tls": {"certificate": "certbot1"}}' \ # Certificate bundle name in Unit's configuration
+         --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
          'http://localhost/config/listeners/*:443'  # Listener's name in Unit's configuration
 
    ```
@@ -179,8 +179,8 @@ For manual renewal and rollover:
    ```
 
    ```console
-   # curl -X PUT --data-binary @bundle2.pem  # Certificate bundle's filename \
-         --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+   # curl -X PUT --data-binary @bundle2.pem \ # Certificate bundle's filename
+         --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
          http://localhost/certificates/certbot2  # Certificate bundle name in Unit's configuration
 
    {
@@ -202,8 +202,8 @@ For manual renewal and rollover:
    renewed certificate bundle:
 
    ```console
-   # curl -X PUT --data-binary 'certbot2'  # New certificate bundle name in Unit's configuration \
-         --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+   # curl -X PUT --data-binary 'certbot2' \ # New certificate bundle name in Unit's configuration
+         --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
          'http://localhost/config/listeners/*:443/tls/certificate'  # Listener's name in Unit's configuration
    ```
 
@@ -215,7 +215,7 @@ For manual renewal and rollover:
 3. Delete the expired bundle:
 
    ```console
-   # curl -X DELETE --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+   # curl -X DELETE --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
          'http://localhost/certificates/certbot1'  # Old certificate bundle name in Unit's configuration
 
    {
@@ -243,8 +243,8 @@ For manual renewal and rollover:
    ```
 
    ```console
-   # curl -X PUT --data-binary @cdn.example.com.pem  # Certificate bundle's filename \
-         --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+   # curl -X PUT --data-binary @cdn.example.com.pem \ # Certificate bundle's filename
+         --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
          http://localhost/certificates/cdn.example.com  # Certificate bundle name in Unit's configuration
 
    {
@@ -253,8 +253,8 @@ For manual renewal and rollover:
    ```
 
    ```console
-   # curl -X PUT --data-binary @www.example.com.pem  # Certificate bundle's filename \
-         --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+   # curl -X PUT --data-binary @www.example.com.pem \ # Certificate bundle's filename
+         --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
          http://localhost/certificates/www.example.com  # Certificate bundle name in Unit's configuration
 
    {
@@ -266,8 +266,8 @@ For manual renewal and rollover:
    the **tls/certificate** option:
 
    ```console
-   # curl -X PUT --data-binary '{"certificate": ["cdn.example.com", "www.example.com"]}'  # Certificate bundle names in Unit's configuration \
-         --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+   # curl -X PUT --data-binary '{"certificate": ["cdn.example.com", "www.example.com"]}' \ # Certificate bundle names in Unit's configuration
+         --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
          'http://localhost/config/listeners/*:443/tls'  # Listener's name in Unit's configuration
 
    ```

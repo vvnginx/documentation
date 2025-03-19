@@ -154,7 +154,7 @@ documentation platform using Unit:
 
    ```console
    # curl -X POST -d '"/mw-config/*"'  \
-         --unix-socket /path/to/control.unit.sock  \  # Path to Unit's control socket in your installation
+         --unix-socket /path/to/control.unit.sock  \ # Path to Unit's control socket in your installation
          http://localhost/config/routes/mediawiki/0/match/uri/  # Path to the route's first step condition and the 'uri' value in it
 
    {

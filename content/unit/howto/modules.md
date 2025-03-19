@@ -167,7 +167,7 @@ Unit package installed:
    $ export UNITTMP=$(mktemp -d -p /tmp -t unit.XXXXXX)
    $ mkdir -p $UNITTMP/unit-php7.3/DEBIAN
    $ cd $UNITTMP
-   ````
+   ```
 
    This creates a folder structure fit for `dpkg-deb`; the
    **DEBIAN** folder will store the package definition.

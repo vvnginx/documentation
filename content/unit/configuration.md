@@ -255,8 +255,8 @@ The **tickets** option works as follows:
    KEY3=$(openssl rand -base64 48)
 
    for SRV in $SERVERS; do
-      ssh root@$SRV  # Assuming Unit runs as root on each server \
-         curl -X PUT -d '["$KEY1", "$KEY2", "$KEY3"]' --unix-socket /path/to/control.unit.sock  # Path to the remote control socket \
+      ssh root@$SRV \ # Assuming Unit runs as root on each server
+         curl -X PUT -d '["$KEY1", "$KEY2", "$KEY3"]' --unix-socket /path/to/control.unit.sock \ # Path to the remote control socket
          'http://localhost/config/listeners/*:443/tls/session/tickets/'
    done
    ```
@@ -267,8 +267,8 @@ The **tickets** option works as follows:
    NEWKEY=$(openssl rand -base64 48)
 
    for SRV in $SERVERS; do
-      ssh root@$SRV  # Assuming Unit runs as root on each server \
-         curl -X POST -d "\"$NEWKEY\"" --unix-socket /path/to/control.unit.sock  # Path to the remote control socket \
+      ssh root@$SRV \ # Assuming Unit runs as root on each server
+         curl -X POST -d "\"$NEWKEY\"" --unix-socket /path/to/control.unit.sock \ # Path to the remote control socket
             'http://localhost/config/listeners/*:443/tls/session/tickets/'
    done
    ```
@@ -277,8 +277,8 @@ The **tickets** option works as follows:
 
    ```shell
    for SRV in $SERVERS; do
-      ssh root@$SRV  # Assuming Unit runs as root on each server \
-         curl -X DELETE --unix-socket /path/to/control.unit.sock  # Path to the remote control socket \
+      ssh root@$SRV \ # Assuming Unit runs as root on each server
+         curl -X DELETE --unix-socket /path/to/control.unit.sock \ # Path to the remote control socket
             'http://localhost/config/listeners/*:443/tls/session/tickets/0'
    done
    ```
@@ -2672,11 +2672,11 @@ isolation for your apps if Unit's underlying OS supports them:
 ```console
 ls /proc/self/ns/
 
-    cgroup mnt  # The mount namespace \
-    net  # The network namespace \
+    cgroup mnt \ # The mount namespace
+    net \ # The network namespace
     pid ... \
-    user  # The credential namespace \
-    uts  # The uname namespace
+    user \ # The credential namespace
+    uts \ # The uname namespace
 ```
 
 The **isolation** application option has the following members:

@@ -108,12 +108,12 @@ Access array items, such as individual certificates in a chain,
 and their properties by indexing, running the following commands as root:
 
 ```console
-# curl -X GET --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+# curl -X GET --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
        http://localhost/certificates/bundle/chain/0/    # Certificate bundle name
 ```
 
 ```console
-# curl -X GET --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+# curl -X GET --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
        http://localhost/certificates/bundle/chain/0/subject/alt_names/0/  # Certificate bundle name
 ```
 {{< /note >}}
@@ -179,7 +179,7 @@ Finally, you can delete a certificate bundle that you don't need anymore
 from the storage, running the following command as root:
 
 ```console
-# curl -X DELETE --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+# curl -X DELETE --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
        http://localhost/certificates/bundle              # Certificate bundle name
 
 {

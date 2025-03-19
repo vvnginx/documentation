@@ -103,7 +103,7 @@ Unit doesn't enable the uploaded modules by default, so add the module's name to
 
 ```console
 curl -X PUT -d '"http"' # Module name to be enabled
-   /path/to/control.unit.sock \  # Path to the remote control socket
+   /path/to/control.unit.sock \ # Path to the remote control socket
    http://localhost/config/settings/js_module
 ```
 

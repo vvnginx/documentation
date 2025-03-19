@@ -321,7 +321,7 @@ Use it to set up an application called **wiki-prod**.
 
 ```console
 # curl -X PUT --data-binary @wiki.json \
-       --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+       --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
        http://localhost/config/applications/wiki-prod
 ```
 
@@ -330,7 +330,7 @@ called **wiki-dev**:
 
 ```console
 # curl -X PUT --data-binary @wiki.json \
-       --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+       --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
        http://localhost/config/applications/wiki-dev
 ```
 
@@ -338,7 +338,7 @@ Toggle the **wiki-dev** app to another source code directory:
 
 ```console
 # curl -X PUT -d '"/www/wiki-dev/"' \
-       --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+       --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
        http://localhost/config/applications/wiki-dev/path
 ```
 
@@ -347,7 +347,7 @@ to warm it up a bit:
 
 ```console
 # curl -X PUT -d '5' \
-       --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+       --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
        http://localhost/config/applications/wiki-prod/processes
 ```
 
@@ -356,14 +356,14 @@ to accept requests at all host IPs:
 
 ```console
 # curl -X PUT -d '{ "pass": "applications/wiki-prod" }' \
-       --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+       --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
        'http://localhost/config/listeners/*:8400'
 ```
 
 Plug the **wiki-dev** app into the listener to test it:
 
 ```console
-# curl -X PUT -d '"applications/wiki-dev"' --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+# curl -X PUT -d '"applications/wiki-dev"' --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
        'http://localhost/config/listeners/*:8400/pass'
 ```
 
@@ -388,12 +388,12 @@ $ cat << EOF > config.json
 ```
 
 ```console
-# curl -X PUT --data-binary @config.json --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+# curl -X PUT --data-binary @config.json --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
        http://localhost/config/routes
 ```
 
 ```console
-# curl -X PUT -d '"routes"' --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+# curl -X PUT -d '"routes"' --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
        'http://localhost/config/listeners/*:8400/pass'
 ```
 
@@ -432,7 +432,7 @@ to add the new item at the end:
 To get the complete **/config** section:
 
 ```console
-# curl --unix-socket /path/to/control.unit.sock  # Path to Unit's control socket in your installation \
+# curl --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
        http://localhost/config/
 
     {

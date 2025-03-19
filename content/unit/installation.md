@@ -162,7 +162,7 @@ Supported architecture: x86-64.
    ```
 
    ```console
-   # yum install `unit-devel <Required to install the Node.js module>` unit-jsc17 unit-perl  \
+   # yum install unit-devel unit-jsc17 unit-perl  \ # unit-devel is required to install the Node.js module
          unit-php unit-python39 unit-python311 unit-wasm
    ```
 
@@ -205,7 +205,7 @@ Supported architecture: x86-64.
    ```
 
    ```console
-   # yum install `unit-devel <Required to install the Node.js module>` unit-jsc8 unit-perl  \
+   # yum install unit-devel unit-jsc8 unit-perl  \ # unit-devel is required to install the Node.js module
          unit-php unit-python27 unit-python37 unit-wasm
    ```
 
@@ -255,7 +255,7 @@ Supported architecture: x86-64.
      # yum install unit
 
    ```console
-     # yum install `unit-devel <Required to install the Node.js module>` unit-jsc8 unit-perl unit-php  \
+     # yum install unit-devel unit-jsc8 unit-perl unit-php  \ # unit-devel is required to install the Node.js module
             unit-python27 unit-python34 unit-python35 unit-python36
 
    ```console
@@ -310,7 +310,7 @@ Supported architectures: arm64, x86-64.
    ```
 
    ```console
-   # apt install `unit-dev <Required to install the Node.js module>` unit-jsc17 unit-perl  \
+   # apt install unit-dev unit-jsc17 unit-perl  \ # unit-dev is required to install the Node.js module
          unit-php unit-python3.11 unit-ruby unit-wasm
    ```
 
@@ -359,7 +359,7 @@ Supported architectures: arm64, x86-64.
    ```
 
    ```console
-   # apt install `unit-dev <Required to install the Node.js module>` unit-jsc11 unit-perl  \
+   # apt install unit-dev unit-jsc11 unit-perl  \ # unit-dev is required to install the Node.js module
          unit-php unit-python2.7 unit-python3.9 unit-ruby unit-wasm
    ```
 
@@ -415,7 +415,7 @@ and other packages you need:
   # apt install unit
 
 ```console
-  # apt install `unit-dev <Required to install the Node.js module>` unit-jsc11 unit-perl  \
+  # apt install unit-dev unit-jsc11 unit-perl  \ # unit-dev is required to install the Node.js module
          unit-php unit-python2.7 unit-python3.7 unit-ruby
 
 ```console
@@ -466,7 +466,7 @@ Supported architectures: i386, x86-64.
    ```
 
    ```console
-   # apt install `unit-dev <Required to install the Node.js module>` unit-jsc8 unit-perl  \
+   # apt install unit-dev unit-jsc8 unit-perl  \ # unit-dev is required to install the Node.js module
          unit-php unit-python2.7 unit-python3.5 unit-ruby
 
    ```console
@@ -512,7 +512,7 @@ Supported architecture: x86-64.
    ```
 
    ```console
-   # yum install `unit-devel <Required to install the Node.js module>` unit-jsc8 unit-jsc11 unit-perl  \
+   # yum install unit-devel unit-jsc8 unit-jsc11 unit-perl  \ # unit-devel is required to install the Node.js module
          unit-php unit-python311 unit-ruby
    ```
 
@@ -551,7 +551,7 @@ Supported architecture: x86-64.
    ```
 
    ```console
-   # yum install `unit-devel <Required to install the Node.js module>` unit-jsc8 unit-jsc11 unit-perl  \
+   # yum install unit-devel unit-jsc8 unit-jsc11 unit-perl  \ # unit-devel is required to install the Node.js module
          unit-php unit-python311 unit-ruby unit-wasm
 
    ```console
@@ -598,7 +598,7 @@ Supported architecture: x86-64.
    ```
 
    ```console
-   # yum install `unit-devel <Required to install the Node.js module>` unit-jsc8 unit-jsc11 unit-perl  \
+   # yum install unit-devel unit-jsc8 unit-jsc11 unit-perl  \ # unit-devel is required to install the Node.js module
          unit-php unit-python39 unit-python310 unit-ruby unit-wasm
    ```
 
@@ -645,7 +645,7 @@ Supported architecture: x86-64.
    ```
 
    ```console
-   # yum install `unit-devel <Required to install the Node.js module>` unit-jsc8 unit-jsc11 unit-perl  \
+   # yum install unit-devel unit-jsc8 unit-jsc11 unit-perl  \ # unit-devel is required to install the Node.js module
          unit-php unit-python39 unit-ruby
    ```
 
@@ -693,7 +693,7 @@ Supported architecture: x86-64.
    ```
 
    ```console
-   # yum install `unit-devel <Required to install the Node.js module>` unit-jsc8 unit-jsc11 unit-perl  \
+   # yum install unit-devel unit-jsc8 unit-jsc11 unit-perl  \ # unit-devel is required to install the Node.js module
          unit-php unit-python38 unit-ruby
    ```
 
@@ -740,7 +740,7 @@ Supported architecture: x86-64.
    ```
 
    ```console
-   # yum install `unit-devel <Required to install the Node.js module>` unit-jsc8 unit-jsc11 unit-perl  \
+   # yum install unit-devel unit-jsc8 unit-jsc11 unit-perl  \ # unit-devel is required to install the Node.js module
          unit-php unit-python27 unit-python37 unit-ruby
    ```
 
@@ -788,7 +788,7 @@ Supported architecture: x86-64.
    ```
 
    ```console
-   # yum install `unit-devel <Required to install the Node.js module>` unit-jsc8 unit-perl  \
+   # yum install unit-devel unit-jsc8 unit-perl  \  # unit-devel is required to install the Node.js module
          unit-php unit-python27 unit-python37 unit-ruby
    ```
 
@@ -842,7 +842,7 @@ Supported architecture: x86-64.
    ```
 
    ```console
-   # yum install `unit-devel <Required to install the Node.js module and build Go apps>` unit-go unit-jsc8 unit-jsc11  \
+   # yum install unit-devel unit-go unit-jsc8 unit-jsc11  \ # unit-devel is required to install the Node.js module and build Go apps
          unit-perl unit-php unit-python39 unit-wasm
    ```
 
@@ -884,7 +884,7 @@ Supported architecture: x86-64.
    ```
 
    ```console
-  # yum install `unit-devel <Required to install the Node.js module>` unit-jsc8 unit-jsc11  \
+   # yum install unit-devel unit-jsc8 unit-jsc11  \  # unit-devel is required to install the Node.js module
          unit-perl unit-php unit-python27 unit-python36 unit-python38 unit-python39 unit-wasm
    ```
 
@@ -930,7 +930,7 @@ Supported architecture: x86-64.
    ```
 
    ```console
-   # yum install `unit-devel <Required to install the Node.js module>` unit-jsc8 unit-jsc11  \
+   # yum install unit-devel unit-jsc8 unit-jsc11  \  # unit-devel is required to install the Node.js module
          unit-perl unit-php unit-python27 unit-python36
    ```
 
@@ -977,7 +977,7 @@ Supported architectures: i386, x86-64.
    ```
 
    ```console
-  # yum install `unit-devel <Required to install the Node.js module>` unit-jsc8 unit-perl  \
+   # yum install unit-devel unit-jsc8 unit-perl  \  # unit-devel is required to install the Node.js module
          unit-php unit-python
    ```
 
@@ -1034,8 +1034,8 @@ Supported architectures: arm64, x86-64.
    ```
 
    ```console
-      # apt install `unit-dev <Required to install the Node.js module and build Go apps>` unit-go unit-jsc11 unit-jsc17 unit-jsc18 unit-jsc19 unit-jsc20  \
-                     unit-perl unit-php unit-python3.11 unit-ruby unit-wasm
+      # apt install unit-dev unit-go unit-jsc11 unit-jsc17 unit-jsc18 unit-jsc19 unit-jsc20  \ # unit-dev is required to install the Node.js module and build Go apps
+                  unit-perl unit-php unit-python3.11 unit-ruby unit-wasm
    ```
 
    ```console
@@ -1090,7 +1090,7 @@ Supported architectures: arm64, x86-64.
    ```
 
    ```console
-   # apt install `unit-dev <Required to install the Node.js module and build Go apps>` unit-go unit-jsc11 unit-jsc17 unit-jsc18 unit-jsc19  \
+   # apt install unit-dev unit-go unit-jsc11 unit-jsc17 unit-jsc18 unit-jsc19  \ # unit-dev is required to install the Node.js module and build Go apps
                   unit-perl unit-php unit-python2.7 unit-python3.10 unit-ruby unit-wasm
    ```
 
@@ -1141,7 +1141,7 @@ Supported architectures: arm64, x86-64.
    ```
 
    ```console
-   # apt install `unit-dev <Required to install the Node.js module and build Go apps>` unit-go unit-jsc11 unit-jsc16 unit-jsc17 unit-jsc18  \
+   # apt install unit-dev unit-go unit-jsc11 unit-jsc16 unit-jsc17 unit-jsc18  \ # unit-dev is required to install the Node.js module and build Go apps
                   unit-perl unit-php unit-python2.7 unit-python3.10 unit-ruby unit-wasm
    ```
 
@@ -1197,7 +1197,7 @@ Supported architectures: arm64, x86-64.
       ```
 
       ```console
-            # apt install `unit-dev <Required to install the Node.js module>` unit-jsc11 unit-jsc16 unit-jsc17 unit-jsc18  \
+            # apt install unit-dev unit-jsc11 unit-jsc16 unit-jsc17 unit-jsc18  \ # unit-dev is required to install the Node.js module
                           unit-perl unit-php unit-python2.7 unit-python3.9 unit-python3.10 unit-ruby
 
    ```console
@@ -1255,7 +1255,7 @@ Supported architectures: arm64, x86-64.
    ```
 
    ```console
-   # apt install `unit-dev <Required to install the Node.js module>` unit-jsc11 unit-jsc15 unit-jsc16 unit-jsc17  \
+   # apt install unit-dev unit-jsc11 unit-jsc15 unit-jsc16 unit-jsc17  \ # unit-dev is required to install the Node.js module
                   unit-perl unit-php unit-python2.7 unit-python3.9 unit-ruby
    # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
    ```
@@ -1308,7 +1308,7 @@ Supported architectures: arm64, x86-64.
    ```
 
    ```console
-   # apt install `unit-dev <Required to install the Node.js module>` unit-jsc11 unit-jsc13 unit-jsc14 unit-jsc15  \
+   # apt install unit-dev unit-jsc11 unit-jsc13 unit-jsc14 unit-jsc15  \ # unit-dev is required to install the Node.js module
                   unit-perl unit-php unit-python3.8 unit-ruby
    ```
 
@@ -1359,7 +1359,7 @@ Supported architectures: arm64, x86-64.
    ```
 
    ```console
-   # apt install `unit-dev <Required to install the Node.js module>` unit-jsc11 unit-perl  \
+   # apt install unit-dev unit-jsc11 unit-perl  \ # unit-dev is required to install the Node.js module
          unit-php unit-python2.7 unit-python3.8 unit-ruby unit-wasm
    ```
 
@@ -1415,7 +1415,7 @@ Supported architecture: x86-64.
    ```
 
    ```console
-   # apt install `unit-dev <Required to install the Node.js module>` unit-jsc11 unit-perl  \
+   # apt install unit-dev unit-jsc11 unit-perl  \ # unit-dev is required to install the Node.js module
          unit-php unit-python2.7 unit-python3.7 unit-python3.8 unit-ruby
    ```
 
@@ -1471,7 +1471,7 @@ Supported architectures: arm64, x86-64.
    ```
 
    ```console
-   # apt install `unit-dev <Required to install the Node.js module>` unit-jsc8 unit-jsc11 unit-perl  \
+   # apt install unit-dev unit-jsc8 unit-jsc11 unit-perl  \ # unit-dev is required to install the Node.js module
          unit-php unit-python2.7 unit-python3.6 unit-python3.7 unit-ruby
    ```
 
@@ -1528,7 +1528,7 @@ Supported architectures: arm64, i386, x86-64.
    ```
 
    ```console
-   # apt install `unit-dev <Required to install the Node.js module>` unit-jsc8 unit-perl unit-php  \
+   # apt install unit-dev unit-jsc8 unit-perl unit-php  \ # unit-dev is required to install the Node.js module
          unit-python2.7 unit-python3.5 unit-ruby
    ```
 
@@ -1668,7 +1668,7 @@ $ nvm install 16
 
 ```console
 $ nvm use 18
-      Now using node `v18.12.1 <Note the version numbers>` (npm v8.19.2)
+      Now using node v18.12.1 (npm v8.19.2) # Note the version numbers
 ```
 
 Having selected the specific version, install the `node-gyp` module:
@@ -1690,7 +1690,7 @@ $ cd unit
 
 ```console
 $ pwd
-      `/home/user/unit <Note the path to the source code>`
+      /home/user/unit # Note the path to the source code
 ```
 
 ```console
@@ -1702,9 +1702,9 @@ $ ./configure nodejs
 
       configuring nodejs module
       checking for node ... found
-         + node version `v18.12.1 <Should be the version selected with nvm>`
+         + node version v18.12.1 # Should be the version selected with nvm
       checking for npm ... found
-         + npm version `8.19.2 <Should be the version selected with npm>`
+         + npm version `8.19.2 # Should be the version selected with npm
       checking for node-gyp ... found
          + node-gyp version v9.3.0
 ```
@@ -1837,19 +1837,19 @@ To install service manager files and specific language modules:
 - **Startup and shutdown:**
 
    ```console
-   # `service unit enable <Enable Unit to launch automatically at system startup>`
+   # service unit enable # Enable Unit to launch automatically at system startup
    ```
 
    ```console
-   # `service unit restart <Start or restart Unit; one-time action>`
+   # service unit restart # Start or restart Unit; one-time action
    ```
 
    ```console
-   # `service unit stop <Stop a running Unit; one-time action>`
+   # service unit stop # Stop a running Unit; one-time action
    ```
 
    ```console
-   # `service unit disable <Disable Unit's automatic startup>`
+   # service unit disable # Disable Unit's automatic startup
    ```
 
 {{%/tab%}}
@@ -1864,7 +1864,7 @@ from the Sisyphus [packages](https://packages.altlinux.org/en/sisyphus/srpms/uni
 
 ```console
 # apt-get install unit
-``
+```
 
 ```console
 # apt-get install unit-perl unit-php unit-python3 unit-ruby
@@ -1892,19 +1892,19 @@ Versions of these packages with the ***-debuginfo** suffix contain symbols for
 - **Startup and shutdown:**
 
    ```console
-   # `service unit enable <Enable Unit to launch automatically at system startup>`
+   # service unit enable # Enable Unit to launch automatically at system startup
    ```
 
    ```console
-   # `service unit restart <Start or restart Unit; one-time action>`
+   # service unit restart # Start or restart Unit; one-time action
    ```
 
    ```console
-   # `service unit stop <Stop a running Unit; one-time action>`
-   ``
+   # service unit stop # Stop a running Unit; one-time action
+   ```
 
    ```console
-   # `service unit disable <Disable Unit's automatic startup>`
+   # service unit disable # Disable Unit's automatic startup
    ```
 
 {{%/tab%}}
@@ -1942,19 +1942,19 @@ $ makepkg -si
 - **Startup and shutdown:**
 
    ```console
-   # `systemctl enable unit <Enable Unit to launch automatically at system startup>`
+   # systemctl enable unit # Enable Unit to launch automatically at system startup
    ```
 
    ```console
-   # `systemctl restart unit <Start or restart Unit; one-time action>`
+   # systemctl restart unit # Start or restart Unit; one-time action
    ```
 
    ```console
-   # `systemctl stop unit <Stop a running Unit; one-time action>`
+   # systemctl stop unit # Stop a running Unit; one-time action
    ```
 
    ```console
-   # `systemctl disable unit <Disable Unit's automatic startup>`
+   # systemctl disable unit # Disable Unit's automatic startup
    ```
 
 {{%/tab%}}
@@ -1969,7 +1969,7 @@ get the core package and other packages you need:
 ```
 
 ```console
-# pkg install -y `libunit <Required to install the Node.js module>`
+# pkg install -y `libunit # Required to install the Node.js module
 ```
 
 ```console
@@ -2049,19 +2049,19 @@ After that, restart Unit:
 - **Startup and shutdown:**
 
    ```console
-   # `service unitd enable <Enable Unit to launch automatically at system startup>`
+   # service unitd enable # Enable Unit to launch automatically at system startup
    ```
 
    ```console
-   # `service unitd restart <Start or restart Unit; one-time action>`
+   # service unitd restart # Start or restart Unit; one-time action
    ```
 
    ```console
-   # `service unitd stop <Stop a running Unit; one-time action>`
+   # service unitd stop # Stop a running Unit; one-time action
    ```
 
    ```console
-   # `service unitd disable <Disable Unit's automatic startup>`
+   # service unitd disable # Disable Unit's automatic startup
    ```
 
 {{%/tab%}}
@@ -2094,19 +2094,19 @@ To install specific language modules and features, apply the corresponding
 - **Startup and shutdown:**
 
    ```console
-   # `rc-update add nginx-unit <Enable Unit to launch automatically at system startup>`
+   # rc-update add nginx-unit # Enable Unit to launch automatically at system startup
    ```
 
    ```console
-   # `rc-service nginx-unit restart <Start or restart Unit; one-time action>`
+   # rc-service nginx-unit restart # Start or restart Unit; one-time action
    ```
 
    ```console
-   # `rc-service nginx-unit stop <Stop a running Unit; one-time action>`
+   # rc-service nginx-unit stop # Stop a running Unit; one-time action
    ```
 
    ```console
-   # `rc-update del nginx-unit <Disable Unit's automatic startup>`
+   # rc-update del nginx-unit # Disable Unit's automatic startup
    ```
 
 {{%/tab%}}
@@ -2120,7 +2120,7 @@ from the [NetBSD Packages Collection](https://cdn.netbsd.org/pub/pkgsrc/current/
 ```
 
 ```console
-# pkg_add `libunit <Required to install the Node.js module>`
+# pkg_add libunit # Required to install the Node.js module
 ```
 
 ```console
@@ -2144,11 +2144,11 @@ Next, browse to the package path to build and install the core Unit binaries:
 
 ```console
 # cd /usr/pkgsrc/www/unit/
-``
+```
 
 ```console
 # make build install
-``
+```
 
 Repeat the steps for the other packages you need:
 [libunit](https://cdn.netbsd.org/pub/pkgsrc/current/pkgsrc/devel/libunit/index.html)
@@ -2195,11 +2195,11 @@ First, add Unit's startup script to the **/etc/rc.d/** directory:
    After that, you can start and stop Unit as follows:
 
    ```console
-   # `service unit restart <Start or restart Unit; one-time action>`
+   # service unit restart # Start or restart Unit; one-time action
    ```
 
    ```console
-   # `service unit stop <Stop a running Unit; one-time action>`
+   # service unit stop # Stop a running Unit; one-time action
    ```
 
 To enable or disable Unit's automatic startup, edit **/etc/rc.conf**:
@@ -2254,19 +2254,19 @@ for a **.nix** configuration file defining an app, see
    After that, use `systemctl`:
 
    ```console
-   # `systemctl enable unit <Enable Unit to launch automatically at system startup>`
+   # systemctl enable unit # Enable Unit to launch automatically at system startup
    ```
 
    ```console
-   # `systemctl restart unit <Start or restart Unit; one-time action>`
+   # systemctl restart unit # Start or restart Unit; one-time action
    ```
 
    ```console
-   # `systemctl stop unit <Stop a running Unit; one-time action>`
+   # systemctl stop unit # Stop a running Unit; one-time action
    ```
 
    ```console
-   # `systemctl disable unit <Disable Unit's automatic startup>`
+   # systemctl disable unit # Disable Unit's automatic startup
    ```
 
 {{%/tab%}}
@@ -2330,15 +2330,15 @@ Next, browse to the port path to build and install Unit:
 
 ```console
 $ cd /usr/ports/www/unit/
-`` `
+```
 
 ```console
 $ make
-``
+```
 
 ```console
 # make install
-``
+```
 
 This also installs the language modules for Perl, PHP, Python, and Ruby;
 other modules can be built and installed from
@@ -2364,19 +2364,19 @@ After that, restart Unit:
 - **Startup and shutdown:**
 
    ```console
-   # `rcctl enable unit <Enable Unit to launch automatically at system startup>`
+   # rcctl enable unit # Enable Unit to launch automatically at system startup
    ```
 
    ```console
-   # `rcctl restart unit <Start or restart Unit; one-time action>`
+   # rcctl restart unit # Start or restart Unit; one-time action
    ```
 
    ```console
-   # `rcctl stop unit <Stop a running Unit; one-time action>`
+   # rcctl stop unit # Stop a running Unit; one-time action
    ```
 
    ```console
-   # `rcctl disable unit <Disable Unit's automatic startup>`
+   # rcctl disable unit # Disable Unit's automatic startup
 
 {{%/tab%}}
 {{%tab name="Remi's RPM" %}}
@@ -2418,19 +2418,19 @@ Next, install Unit and the PHP modules you want:
 - **Startup and shutdown:**
 
    ```console
-   # `systemctl enable unit <Enable Unit to launch automatically at system startup>`
+   # systemctl enable unit # Enable Unit to launch automatically at system startup
    ```
 
    ```console
-   # `systemctl restart unit <Start or restart Unit; one-time action>`
+   # systemctl restart unit # Start or restart Unit; one-time action
    ```
 
    ```console
-   # `systemctl stop unit <Stop a running Unit; one-time action>`
+   # systemctl stop unit # Stop a running Unit; one-time action
    ```
 
    ```console
-   # `systemctl disable unit <Disable Unit's automatic startup>`
+   # systemctl disable unit # Disable Unit's automatic startup
    ```
 
 {{%/tab%}}
@@ -2637,7 +2637,7 @@ in the container's **/docker-entrypoint.d/** directory:
 |------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **.pem**   | [Certificate bundles]({{< relref "/unit/certificates.md">}}), uploaded under respective names:<br><br>**cert.pem** to **/certificates/cert**.                                                                                                   |
 | **.json**  | [Configuration snippets]({{< relref "/unit/controlapi.md#configuration-mgmt" >}}), uploaded to the **/config** section of Unit's configuration.                                                                                                 |
-| **.sh**    | `Shell scripts <Use shebang in your scripts to specify a custom shell>`, run after the **.pem** and **.json** files are uploaded;<br><br>must be executable.                                                                                     |
+| **.sh**    | Shell scripts, run after the **.pem** and **.json** files are uploaded. Use shebang in your scripts to specify a custom shell;<br><br>must be executable.                                                                                     |
 
 {{</bootstrap-table>}}
 
@@ -2673,7 +2673,7 @@ for later use. For ad-hoc initialization, you can mount a directory with configu
 
 ```console
 $ docker run -d --mount \
-      type=bind,src=/path/to/config/files/,dst=/docker-entrypoint.d/  # Use a real path instead \
+      type=bind,src=/path/to/config/files/,dst=/docker-entrypoint.d/ \ # Use a real path instead
       unit:{{< param "unitversion" >}}-minimal
 ```
 
@@ -2712,7 +2712,7 @@ $ tar xzf unit-{{< param "unitversion" >}}.tar.gz
 ```
 
 ```console
-         $ cd unit-{{< param "unitversion" >}}
+$ cd unit-{{< param "unitversion" >}}
 ```
 
 {{%/tab%}}
