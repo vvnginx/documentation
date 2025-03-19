@@ -159,6 +159,7 @@ Supported architecture: x86-64.
 
    ```console
    # yum install unit
+   ```
 
    ```console
    # yum install `unit-devel <Required to install the Node.js module>` unit-jsc17 unit-perl  \
