@@ -7,13 +7,13 @@ product: NAP-WAF
 docs: DOCS-000
 ---
 
-March 18th, 2025
+March 24th, 2025
 
 ---
 
 ## New features
 
-- Changed the maximum memory of the XML processing engine to 8GB
+- Added support for NGINX Plus R34
 - Upgraded the Go compiler to 1.23.7
 
 ---
@@ -22,16 +22,14 @@ March 18th, 2025
 
 - Alpine 3.17 is no longer supported
 
-## Known issues
-
-- (12296) "Violation Bad Unescape" is not enabled by default
-- (12297) "Violation Encoding" is not enabled by default
-
 ---
 
 ## Resolved issues
 
+- Changed the maximum memory of the XML processing engine to 8GB
 - (12254) A modified YAML file referenced by a JSON policy file causes a reload error when running `nginx -t`
+- (12296) "Violation Bad Unescape" is not enabled by default
+- (12297) "Violation Encoding" is not enabled by default
 
 ---
 
