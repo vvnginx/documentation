@@ -16,14 +16,13 @@ If you're an employee of F5/NGINX, also read [For F5/NGINX Employees](./F5-NGINX
 You will need to install Hugo _or_ Docker to build and preview docs in your local development environment.
 Refer to the [Hugo installation instructions](https://gohugo.io/getting-started/installing/) for more information.
 
-**NOTE**: We are currently running [Hugo v0.134.2](https://github.com/gohugoio/hugo/releases/tag/v0.134.2) in production.
-
 
 Although not a strict requirement, markdown-link-check is also used in documentation development.
 
 If you have [Docker](https://www.docker.com/get-started/) installed, there are fallbacks for all requirements in the [Makefile](Makefile), meaning you don't need to install them.
 
 - [Installing Hugo](https://gohugo.io/getting-started/installing/)
+  - **NOTE**: We are currently running [Hugo v0.134.2](https://github.com/gohugoio/hugo/releases/tag/v0.134.2) in production.
 - [Installing markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli?tab=readme-ov-file#installation)
 - [Installing markdown-link-check](https://github.com/tcort/markdown-link-check?tab=readme-ov-file#installation).
 
@@ -35,7 +34,11 @@ The configuration files are as follows:
 
 ## Local Docs Development
 
-To build the documentation locally, use the `make` command in the documentation folder with these targets:
+To build the documentation locally, use the `make` command in the documentation folder. First make sure you have the latest version of our Hugo theme with:
+
+`make hugo-update`
+
+Once you've updated the theme, you can use these targets:
 
 ```text
 make watch        - Runs a local Hugo server, allowing for changes to be previewed in a  browser.
@@ -64,7 +67,7 @@ We have templates for the following types of documentation:
 
 ## How to format docs
 
-### Basic markdown formatting
+### Basic Markdown formatting
 
 There are multiple ways to format text: for consistency and clarity, these are our conventions:
 
@@ -133,11 +136,13 @@ Supported callouts:
 - `caution`
 - `warning`
 
-You can also create custom callouts using the `call-out` shortcode `{{< call-out "type" "header" "font-awesome icon >}}`. For example:
+You can also create custom callouts using the `call-out` shortcode `{{< call-out "type position" "header" "font-awesome icon >}}`. For example:
 
 ```md
-{{<call-out "important" "JWT file required for upgrade" "fa fa-exclamation-triangle">}}
+{{<call-out "important side-callout" "JWT file required for upgrade" "fa fa-exclamation-triangle">}}
 ```
+
+By default, all custom callouts are included inline, unless you add `side-callout` which places the callout to the right of the content.
 
 Here are some other shortcodes:
 
@@ -151,6 +156,25 @@ Here are some other shortcodes:
 - `raw-html`: Include a block of raw HTML
 - `readfile`: Include the content of another file in the current file, which can be in an arbitrary location.
 - `bootstrap-table`: formats a table using Bootstrap classes; accepts any bootstrap table classes as additional arguments, e.g. `{{< bootstrap-table "table-bordered table-hover" }}`
+
+### How to use Hugo includes
+
+As mentioned above, [Hugo includes](https://gohugo.io/contribute/documentation/#include) are a custom shortcode that allows you to reference reusable content stored in the [`/content/includes` directory](https://github.com/nginx/documentation/tree/main/content/includes).
+
+For example, if the [`controller/add-existing-instance.md`](https://github.com/nginx/documentation/blob/main/content/includes/controller/add-existing-instance.md) file contains instructions on adding an instance to the NGINX Controller, you can reuse it on multiple pages by adding:
+
+```md
+{{< include "controller/add-existing-instance.md" >}}
+```
+
+The `controller/add-existing-instance.md` file is included in the following pages on the NGINX Docs Site:
+
+- [Add an NGINX App Protect Instance](https://github.com/nginx/documentation/blob/main/content/controller/infrastructure/instances/add-nap-instance.md?plain=1#L35)
+- [Manage Your NGINX Instances](https://github.com/nginx/documentation/blob/main/content/controller/infrastructure/instances/manage-instances.md?plain=1#L29)
+- [Trial NGINX Controller with NGINX Plus](https://github.com/nginx/documentation/blob/main/content/controller/admin-guides/install/try-nginx-controller.md?plain=1#L277)
+- [Trial NGINX Controller with App Security](https://github.com/nginx/documentation/blob/main/content/controller/admin-guides/install/try-nginx-controller-app-sec.md?plain=1#L290)
+
+This ensures that content is defined once and referenced in multiple places without duplication.
 
 ## Linting
 

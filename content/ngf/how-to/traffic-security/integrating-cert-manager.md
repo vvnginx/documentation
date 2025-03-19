@@ -7,7 +7,7 @@ product: NGF
 docs: DOCS-1425
 ---
 
-Learn how to issue and mange certificates using Let's Encrypt and cert-manager.
+Learn how to issue and manage certificates using Let's Encrypt and cert-manager.
 
 ## Overview
 
@@ -68,9 +68,10 @@ The first step is to deploy cert-manager onto the cluster.
     cert-manager jetstack/cert-manager \
     --namespace cert-manager \
     --create-namespace \
-    --version v1.12.0 \
-    --set installCRDs=true \
-    --set "extraArgs={--feature-gates=ExperimentalGatewayAPISupport=true}"
+    --set config.apiVersion="controller.config.cert-manager.io/v1alpha1" \
+    --set config.kind="ControllerConfiguration" \
+    --set config.enableGatewayAPI=true \
+    --set crds.enabled=true
   ```
 
 ---
