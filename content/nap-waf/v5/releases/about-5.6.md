@@ -27,7 +27,7 @@ March 24th, 2025
 
 ## Resolved issues
 
-- Changed the maximum memory of the XML processing engine to 8GB
+- (12140) Changed the maximum memory of the XML processing engine to 8GB
 - (12254) A modified YAML file referenced by a JSON policy file causes a reload error when running `nginx -t`
 - (12296) "Violation Bad Unescape" is not enabled by default
 - (12297) "Violation Encoding" is not enabled by default
