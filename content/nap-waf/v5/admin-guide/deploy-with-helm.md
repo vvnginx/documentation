@@ -24,13 +24,13 @@ This document explains how to install F5 NGINX App Protect WAF with Helm.
 
 Follow the instructions below to build a Docker image containing the NGINX and the NGINX App Protect module.
 
-### Download Certificates
+### Download certificates
 
 {{< include "nap-waf/download-certificates.md" >}}
 
-Proceed, by creating a `Dockerfile` using one of the examples provided below.
+Next, create a `Dockerfile` using one of the examples provided below.
 
-### Dockerfile Based on the Official NGINX Image
+### Official NGINX Dockerfile
 
 {{< include "nap-waf/build-from-official-nginx-image.md" >}}
 
@@ -124,7 +124,7 @@ Next, push it to your private image repository, ensuring it's accessible to your
 
 --- 
 
-## Pull the Chart
+## Pull the chart
 
 Login to the registry:
 
@@ -194,28 +194,52 @@ cd nginx-app-protect
     ```
     Replace <namespace> with the namespace specified in the values.yaml.
 
-## Upgrade the chart
+---
 
-To upgrade the release `<release-name>`:
-```
-helm upgrade <release-name> .
-```
+## Configure read only file systems
 
-## Uninstall the chart
-
-To uninstall/delete the release `<release-name>`:
-
-```shell
-helm uninstall <release-name>
-```
+{{< include "/nap-waf/nap-k8s-readonly-introduction.md" >}}
 
 ---
+ 
+### Enable `readOnlyRootFilesystem` and configure writable paths
+
+{{< include "/nap-waf/nap-k8s-readonly-context.md" >}}
+
+---
+
+### Update NGINX configuration with writable paths
+
+{{< include "/nap-waf/nap-k8s-readonly-paths.md" >}}
+
+--- 
+ 
+### Possible issues
+
+{{< include "/nap-waf/nap-k8s-readonly-issues.md" >}}
+
+---
+
+## Enable mTLS  
+
+{{< include "/nap-waf/nap-k8s-mtls-deployment.md" >}}
+
+---
+
+## Use compiled Policy and Logging Profile bundles in NGINX
+
+{{< include "/nap-waf/nap-k8s-use-compiled-bundles.md" >}}
+
+The NGINX configuration is found in the values.yaml file `appprotect.config.nginxConf`.
+The bundles path and the host path can be configured in `appprotect.storage`.
 
 ## Configuration
 
 This table lists the configurable parameters of the NGINX App Protect chart and their default values.
 
 It should help you quickly understand the referenced configuration settings in the `values.yaml` file.
+
+To use the *mTLS Configuration* options, read the [Secure Traffic Between NGINX and App Protect Enforcer using mTLS]({{< ref "/nap-waf//v5/configuration-guide/configuration.md#secure-traffic-between-nginx-and-app-protect-enforcer-using-mtls" >}}) topic.
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | **Section** | **Key** | **Description** | **Default Value** |
@@ -265,15 +289,17 @@ It should help you quickly understand the referenced configuration settings in t
 
 ---
 
-## Use compiled Policy and Logging Profile bundles in NGINX
+## Upgrade the chart
 
-In this setup, copy your compiled policy and logging profile bundles to `/mnt/nap5_bundles_pv_data` on a cluster node. Make sure that input files are accessible to UID 101. Then, in your NGINX configuration, refer to these files from `/etc/app_protect/bundles`.
+To upgrade the release `<release-name>`:
+```
+helm upgrade <release-name> .
+```
 
-For example, to apply `custom_policy.tgz` that you've placed in `/mnt/nap5_bundles_pv_data/`, use:
+## Uninstall the chart
 
-   ```nginx
-   app_protect_policy_file "/etc/app_protect/bundles/custom_policy.tgz";
-   ```
+To uninstall/delete the release `<release-name>`:
 
-The NGINX configuration is found in the values.yaml file `appprotect.config.nginxConf`.
-The bundles path and the host path can be configured in `appprotect.storage`.
+```shell
+helm uninstall <release-name>
+```
