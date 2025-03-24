@@ -1,4 +1,4 @@
-1. Create the `/etc/ssl/nginx` directory:
+1. Create the `/etc/ssl/nginx/` directory:
 
     ```shell
     sudo mkdir -p /etc/ssl/nginx

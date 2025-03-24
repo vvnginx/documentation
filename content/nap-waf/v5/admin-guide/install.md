@@ -15,18 +15,18 @@ docs: DOCS-1363
 
 ## Install NGINX and NGINX App Protect WAF Module
 
-1. If you already have NGINX packages in your system, back up your configs and logs:
+If you already have NGINX packages in your system, back up your configs and logs:
 
-    ```shell
-    sudo cp -a /etc/nginx /etc/nginx-plus-backup
-    sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
-    ```
+```shell
+sudo cp -a /etc/nginx /etc/nginx-plus-backup
+sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
+```
 
-2. Log in to [MyF5 Customer Portal](https://account.f5.com/myf5) and download your **nginx-repo.crt** and **nginx-repo.key** files.
+1. Log in to [MyF5 Customer Portal](https://account.f5.com/myf5) and download your **nginx-repo.crt** and **nginx-repo.key** files.
 
-3. If any old NGINX App Protect packages are installed, make sure to remove them.
+1. If any old NGINX App Protect packages are installed, make sure to remove them.
 
-4. Follow the steps below for the operating system you are working with.
+1. Follow the steps below for the operating system you are working with.
 
 {{< note >}}
 If not already installed, `nginx` or `nginx-plus` will be installed automatically as a dependency.
@@ -38,267 +38,164 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
 
 {{<tabs name="common_steps_for_nginx_oss_and_plus">}}
 
-{{%tab name="Alpine Linux 3.16/3.17/3.19"%}}
+{{%tab name="Alpine Linux"%}}
  
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-alpine" >}}
 
 {{%/tab%}}
 
-{{%tab name="Amazon Linux 2"%}}
-
-1. Create the `/etc/ssl/nginx` directory:
-
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    ```
-
-2. Upload **nginx-repo.crt** and **nginx-repo.key** files to the `/etc/ssl/nginx/` directory.
-
-3. Install required dependencies:
-
-    ```shell
-    sudo yum install ca-certificates wget
-    ```
-
-4. Remove any previously downloaded NGINX repository files from `/etc/yum.repos.d`:
-
-    ```shell
-    sudo rm /etc/yum.repos.d/nginx*.repo
-    sudo rm /etc/yum.repos.d/*app-protect*.repo
-    ```
-
-{{%/tab%}}
-{{%tab name="Amazon Linux 2023"%}}
+{{%tab name="Amazon Linux"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-amzn2023.md" >}}
 
 {{%/tab%}}
-{{%tab name="Centos 7.4+"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-rhel-cen-74.md" >}}
-
-{{%/tab%}}
-{{%tab name="Debian 11"%}}
+{{%tab name="Debian"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-debian" >}}
 
 {{%/tab%}}
-{{%tab name="Debian 12"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-debian" >}}
-
-{{%/tab%}}
 {{%tab name="Oracle Linux 8.1+"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-dnf.md" >}}
 
 {{%/tab%}}
-{{%tab name="RHEL 7.4+"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-rhel-cen-74.md" >}}
-
-{{%/tab%}}
-{{%tab name="RHEL 8.1+"%}}
+{{%tab name="RHEL"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-dnf.md" >}}
 
 {{%/tab%}}
-{{%tab name="RHEL 9"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-dnf.md" >}}
-
-{{%/tab%}}
-{{%tab name="Ubuntu 20.04"%}}
+{{%tab name="Ubuntu"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-ubuntu.md" >}}
 
 {{%/tab%}}
-{{%tab name="Ubuntu 22.04"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-ubuntu.md" >}}
-
-
-{{%/tab%}}
-{{%tab name="Ubuntu 24.04"%}}
-
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-ubuntu.md" >}}
-
-{{%/tab%}}
 {{</tabs>}}
 
 ### For NGINX Open Source
 
 {{<tabs name="for_nginx_open_source">}}
 
-{{%tab name="Alpine Linux 3.16/3.17/3.19"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-alpine.md" >}}
-
-3. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo apk add app-protect-module-oss
-    ```
-
-{{%/tab%}}
-
-{{%tab name="Amazon Linux 2"%}}
+{{%tab name="Amazon Linux"%}}
 
 1. Create the file named `/etc/yum.repos.d/nginx.repo` with the following contents:
 
-    ```none
-    [nginx-mainline]
-    name=nginx mainline repo
-    baseurl=http://nginx.org/packages/mainline/amzn2/$releasever/$basearch/
-    gpgcheck=1
-    enabled=1
-    gpgkey=https://nginx.org/keys/nginx_signing.key
-    module_hotfixes=true
-    ```
+```none
+[nginx-mainline]
+name=nginx mainline repo
+baseurl=http://nginx.org/packages/mainline/amzn/2023/$basearch/
+gpgcheck=1
+enabled=1
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
+```
 
-2. Create NGINX App Protect WAF v5 repository file, named `/etc/yum.repos.d/app-protect-x-oss.repo` with the following contents:
+1. Create the NGINX App Protect WAF v5 repository file, named `/etc/yum.repos.d/app-protect-x-oss.repo` with the following contents:
 
-    ```none
-    [app-protect-x-oss]
-    name=nginx-app-protect repo
-    baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/7/$basearch/
-    sslclientcert=/etc/ssl/nginx/nginx-repo.crt
-    sslclientkey=/etc/ssl/nginx/nginx-repo.key
-    gpgcheck=0
-    enabled=1
-    ```
-
-3. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo yum install app-protect-module-oss
-    ```
-
-    When prompted to accept the GPG key, verify that the fingerprint matches `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`, and if so, accept it.
-
-{{%/tab%}}
-{{%tab name="Amazon Linux 2023"%}}
-
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-amzn2023.md" >}}
+```none
+[app-protect-x-oss]
+name=nginx-app-protect repo
+baseurl=https://pkgs.nginx.com/app-protect-x-oss/amzn/2023/$basearch/
+sslclientcert=/etc/ssl/nginx/nginx-repo.crt
+sslclientkey=/etc/ssl/nginx/nginx-repo.key
+gpgcheck=0
+enabled=1
+```
 
 3. Install the NGINX App Protect WAF v5 package.
 
-    ```shell
-    sudo dnf install app-protect-module-oss
-    ```
+```shell
+sudo dnf install app-protect-module-oss
+```
 
 {{%/tab%}}
-{{%tab name="Centos 7.4+"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos-7.md" >}}
+{{%tab name="Alpine Linux"%}}
 
-{{%/tab%}}
-{{%tab name="Debian 11"%}}
+1. Set up the apk repository for mainline nginx packages:
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-debian.md" >}}
+```shell
+printf "%s%s%s\n" \
+"http://nginx.org/packages/mainline/alpine/v" \
+`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` \
+"/main" \
+| sudo tee -a /etc/apk/repositories
+```
 
-4. Install the NGINX App Protect WAF v5 package:
+1. Add the NGINX App Protect WAF v5 apk repository:
 
-    ```shell
-    sudo apt-get update
-    sudo apt-get install nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
-    ```
+```shell
+printf "https://pkgs.nginx.com/app-protect-x-oss/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
+```
 
-{{%/tab%}}
-{{%tab name="Debian 12"%}}
+1. Install the NGINX App Protect WAF v5 package:
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-debian.md" >}}
-
-4. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo apt-get update
-    sudo apt-get install nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
-    ```
+```shell
+sudo apk add app-protect-module-oss
+```
 
 {{%/tab%}}
+
+{{%tab name="Debian"%}}
+
+1. Add the NGINX Open Source repository:
+
+```shell
+echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+http://nginx.org/packages/mainline/debian `lsb_release -cs` nginx" | \
+sudo tee /etc/apt/sources.list.d/nginx.list
+```
+
+1. Set up repository pinning to prefer our packages over distribution-provided ones:
+
+```shell
+echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" | \
+sudo tee /etc/apt/preferences.d/99nginx
+```
+
+1. Add the NGINX App Protect WAF v5 repository:
+
+```shell
+printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+https://pkgs.nginx.com/app-protect-x-oss/debian `lsb_release -cs` nginx-plus\n" | \
+sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
+```
+
+1. Install the NGINX App Protect WAF v5 package:
+
+```shell
+sudo apt-get update
+sudo apt-get install nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
+```
+
+{{%/tab%}}
+
 {{%tab name="Oracle Linux 8.1+"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos-8.md" >}}
-
-3. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo dnf install app-protect-module-oss
-    ```
-
-    When prompted to accept the GPG key, verify that the fingerprint matches `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`, and if so, accept it.
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos-7.md" >}}
 
 {{%/tab%}}
-{{%tab name="RHEL 7.4+"%}}
+
+{{%tab name="RHEL"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos-7.md" >}}
 
 {{%/tab%}}
-{{%tab name="RHEL 8.1+"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos-8.md" >}}
-
-3. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo dnf install app-protect-module-oss
-    ```
-
-    When prompted to accept the GPG key, verify that the fingerprint matches `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`, and if so, accept it.
-
-{{%/tab%}}
-{{%tab name="RHEL 9"%}}
-
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos-9.md" >}}
-
-3. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo dnf install app-protect-module-oss
-    ```
-
-    When prompted to accept the GPG key, verify that the fingerprint matches `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`, and if so, accept it.
-
-{{%/tab%}}
-{{%tab name="Ubuntu 20.04"%}}
+{{%tab name="Ubuntu"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-ubuntu.md" >}}
 
-4. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo apt-get update
-    sudo apt-get install nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
-    ```
-
 {{%/tab%}}
-{{%tab name="Ubuntu 22.04"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-ubuntu.md" >}}
-
-4. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo apt-get update
-    sudo apt-get install nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
-    ```
-
-
-{{%/tab%}}
-{{%tab name="Ubuntu 24.04"%}}
-
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-ubuntu.md" >}}
-
-4. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo apt-get update
-    sudo apt-get install nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
-    ```
-
-{{%/tab%}}
 {{</tabs>}}
+
+---
 
 ### For NGINX Plus
 {{<tabs name="for_nginx_plus">}}
