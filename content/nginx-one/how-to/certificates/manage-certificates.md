@@ -133,7 +133,7 @@ The Export option supports exports of basic certification file information to a 
 
 ## Deployed certificates
 
-A deployed certificate is associated a specific Instance or Config Sync Gruop. That certificate may be Managed or Unmanaged.
+A deployed certificate is associated with a specific Instance or Config Sync Gruop. That certificate may be Managed or Unmanaged.
 
 ## Add a new certificate or bundle
 
