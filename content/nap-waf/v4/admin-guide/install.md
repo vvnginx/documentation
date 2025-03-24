@@ -40,7 +40,6 @@ NGINX App Protect WAF supports the following operating systems:
 - [Ubuntu 20.04 (Focal)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
 - [Ubuntu 22.04 (Jammy)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
 - [Ubuntu 24.04 (Noble)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
-- [Alpine 3.17](#alpine-316-317--319-installation)
 - [Alpine 3.19](#alpine-316-317--319-installation)
 
 The NGINX App Protect WAF package has the following dependencies:
@@ -1206,7 +1205,7 @@ If a user other than **nginx** is to be used, note the following:
 {{< /note >}}
 
 
-## Alpine 3.16, 3.17 & 3.19 Installation
+## Alpine 3.19 Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
