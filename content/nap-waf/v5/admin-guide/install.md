@@ -11,11 +11,11 @@ docs: DOCS-1363
 
 - Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/) (purchased or trial).
 - Docker (with Docker Compose) is [installed and running](https://docs.docker.com/engine/install/).
-- A [supported operating system]({{< relref "/nginx/technical-specs.md#appprotect" >}}) (OS).
+- A [supported operating system]({{< relref "/nap-waf/v5/admin-guide/overview.md#technical-specifications" >}}).
 
 ## Install NGINX and NGINX App Protect WAF Module
 
-If you already have NGINX packages in your system, back up your configs and logs:
+If you already have NGINX packages in your system, back up your configuration and log files:
 
 ```shell
 sudo cp -a /etc/nginx /etc/nginx-plus-backup
@@ -56,7 +56,7 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
 
 {{%/tab%}}
 
-{{%tab name="Oracle Linux 8.1+"%}}
+{{%tab name="Oracle Linux"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-dnf.md" >}}
 
@@ -175,7 +175,7 @@ sudo apt-get install nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
 
 {{%/tab%}}
 
-{{%tab name="Oracle Linux 8.1+"%}}
+{{%tab name="Oracle Linux"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos-7.md" >}}
 
@@ -198,50 +198,45 @@ sudo apt-get install nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
 ---
 
 ### For NGINX Plus
+
+To use NGINX Plus, you will need to download the the JWT license file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
+
+{{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
+
+Once you have the license file:
+
+{{< include "licensing-and-reporting/apply-jwt.md" >}}
+
+Then you can move onto the next step, depending on your chosen operating system.
+
 {{<tabs name="for_nginx_plus">}}
 
-{{%tab name="Alpine Linux 3.16/3.17/3.19"%}}
+{{%tab name="Alpine Linux"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-alpine.md" >}}
 
-3. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo apk add app-protect-module-plus
-    ```
-
 {{%/tab%}}
 
-{{%tab name="Amazon Linux 2"%}}
+{{%tab name="Amazon Linux"%}}
 
-1. Download the NGINX Plus repository file [nginx-plus-amazon2.repo](https://cs.nginx.com/static/files/nginx-plus-amazon2.repo) to `/etc/yum.repos.d`:
+1. Download the NGINX Plus repository file [plus-amazonlinux2023.repo](https://cs.nginx.com/static/files/plus-amazonlinux2023.repo) to `/etc/yum.repos.d`:
 
     ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-amazon2.repo
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
     ```
 
-2. Create NGINX App Protect WAF v5 repository file, named `/etc/yum.repos.d/app-protect-x-plus.repo` with the following contents:
+1. Create NGINX App Protect WAF v5 repository file, named `/etc/yum.repos.d/app-protect-x-plus.repo` with the following contents:
 
     ```none
     [app-protect-x-plus]
     name=nginx-app-protect repo
-    baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/7/$basearch/
+    baseurl=https://pkgs.nginx.com/app-protect-x-plus/amzn/2023/$basearch/
     sslclientcert=/etc/ssl/nginx/nginx-repo.crt
     sslclientkey=/etc/ssl/nginx/nginx-repo.key
     gpgcheck=0
     enabled=1
     ```
 
-3. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo yum install app-protect-module-plus
-    ```
-
-{{%/tab%}}
-{{%tab name="Amazon Linux 2023"%}}
-
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-amzn2023.md" >}}
 
 3. Install the NGINX App Protect WAF v5 package:
 
@@ -250,11 +245,7 @@ sudo apt-get install nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
     ```
 
 {{%/tab%}}
-{{%tab name="Centos 7.4+"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-7.md" >}}
-
-{{%/tab%}}
 {{%tab name="Debian 11"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-debian.md" >}}
@@ -356,6 +347,8 @@ sudo apt-get install nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
 
 {{%/tab%}}
 {{</tabs>}}
+
+---
 
 ## NGINX Configuration
 
@@ -793,6 +786,16 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
 {{</tabs>}}
 
 ### For NGINX Plus
+
+To use NGINX Plus, you will need to download the the JWT license file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
+
+{{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
+
+Once you have the license file:
+
+{{< include "licensing-and-reporting/apply-jwt.md" >}}
+
+Then you can move onto the next step, depending on your chosen operating system.
 
 {{<tabs name="offline_for_nginx_plus">}}
 
