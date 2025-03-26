@@ -163,7 +163,7 @@ If that certificate is already managed as part of a Config Sync Group, the chang
 
 ## Remove a managed certificate
 
-You can remove a managed certificate from an independent instance or from a Config Sync Group. This will remove the certificate's association with the Instance or group, but it does not delete the certificate files from the Instance(s).
+You can remove a deployed certificate from an independent instance or from a Config Sync Group. This action also deletes the certificate files or certificate-key pairs from the data plane Instance(s).
 
 Every Instance with a certificate includes paths to certificates in their configuration files. If you remove one certificate, that change is limited to that one Instance.
 
