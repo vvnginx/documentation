@@ -6,7 +6,7 @@ Before new content is published at https://docs.nginx.com, it must be committed 
 
 If you are an F5 employee unable to assign yourself as an owner of an issue or a reviewer of a pull request, ask a member of the NGINX documentation team for help.
 
-If your content cannot be publicised before release, it is handled differently: read the [Contributing guidelines for closed content](/CLOSED_CONTRIBUTIONS.md) document.
+If your content cannot be publicized before release, it is handled differently: read the [Contributing guidelines for closed content](/CLOSED_CONTRIBUTIONS.md) document.
 
 We encourage you to work with community contributors. If you participate in PRs, issues, discussions, and more, follow these guidelines:
 
