@@ -161,7 +161,7 @@ You can modify existing certificates from the **Certificates** screen. Select th
 
 If that certificate is already managed as part of a Config Sync Group, the changes you make affect all instances in that group.
 
-## Remove a managed certificate
+## Delete a deployed certificate
 
 You can remove a deployed certificate from an independent instance or from a Config Sync Group. This action also deletes the certificate files or certificate-key pairs from the data plane Instance(s).
 
