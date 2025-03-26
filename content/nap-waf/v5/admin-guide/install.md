@@ -498,7 +498,7 @@ If not already installed, `nginx` or `nginx-plus` will be installed automaticall
 
 ### Common Steps for NGINX Open Source and NGINX Plus
 
-Please follow these steps before you install either NGINX Open Source or NGINX Plus.
+Follow these steps before you install NGINX Open Source or NGINX Plus.
 
 {{<tabs name="offline_common_steps_for_nginx_oss_and_plus">}}
 
