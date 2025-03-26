@@ -1,6 +1,6 @@
 # For F5/NGINX Employees
 
-This repository is a functional mirror. We want to do as much of our work as possible in the public repository. 
+This repository is public, and we do as much of our work as possible in the public as a commitment to open source.
 
 Content which cannot be publicised before release is handled slightly differently: please read the [Contributing guidelines for closed content](/CLOSED_CONTRIBUTIONS.md) document.
 
