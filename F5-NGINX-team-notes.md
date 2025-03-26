@@ -1,12 +1,10 @@
 # For F5/NGINX Employees
 
-This repository is a functional mirror. We want to do as much of our work as possible in the
-public repository. However, if you are working with:
+This repository is a functional mirror. We want to do as much of our work as possible in the public repository. 
 
-- Security content, including personally identifying information (PII).
-- Content / features that are not yet ready to be announced.
+Content which cannot be publicised before release is handled slightly differently: please read the [Contributing guidelines for closed content](/CLOSED_CONTRIBUTIONS.md) document.
 
-Before new content is published at https://docs.nginx.com, it must be written to this `documentation` repository. After you get approvals in the internal `docs` repository, you'll need to create a _second_ pull request in this open `documentation` repository.
+Before new content is published at https://docs.nginx.com, it must be commited to this `documentation` repository. 
 
 If you are unable to assign yourself as an owner of an issue or a reviewer of a pull request, and are an employee of F5, ask a member of the NGINX documentation team for help.
 
