@@ -46,7 +46,7 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
 
 {{%tab name="Amazon Linux"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-amzn2023.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-amazon.md" >}}
 
 {{%/tab%}}
 
@@ -83,107 +83,31 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
 
 {{%tab name="Amazon Linux"%}}
 
-1. Create the file named `/etc/yum.repos.d/nginx.repo` with the following contents:
-
-```none
-[nginx-mainline]
-name=nginx mainline repo
-baseurl=http://nginx.org/packages/mainline/amzn/2023/$basearch/
-gpgcheck=1
-enabled=1
-gpgkey=https://nginx.org/keys/nginx_signing.key
-module_hotfixes=true
-```
-
-1. Create the NGINX App Protect WAF v5 repository file, named `/etc/yum.repos.d/app-protect-x-oss.repo` with the following contents:
-
-```none
-[app-protect-x-oss]
-name=nginx-app-protect repo
-baseurl=https://pkgs.nginx.com/app-protect-x-oss/amzn/2023/$basearch/
-sslclientcert=/etc/ssl/nginx/nginx-repo.crt
-sslclientkey=/etc/ssl/nginx/nginx-repo.key
-gpgcheck=0
-enabled=1
-```
-
-3. Install the NGINX App Protect WAF v5 package.
-
-```shell
-sudo dnf install app-protect-module-oss
-```
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-amazon.md" >}}
 
 {{%/tab%}}
 
 {{%tab name="Alpine Linux"%}}
 
-1. Set up the apk repository for mainline nginx packages:
-
-```shell
-printf "%s%s%s\n" \
-"http://nginx.org/packages/mainline/alpine/v" \
-`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` \
-"/main" \
-| sudo tee -a /etc/apk/repositories
-```
-
-1. Add the NGINX App Protect WAF v5 apk repository:
-
-```shell
-printf "https://pkgs.nginx.com/app-protect-x-oss/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
-```
-
-1. Install the NGINX App Protect WAF v5 package:
-
-```shell
-sudo apk add app-protect-module-oss
-```
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-alpine.md" >}}
 
 {{%/tab%}}
 
 {{%tab name="Debian"%}}
 
-1. Add the NGINX Open Source repository:
-
-```shell
-echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-http://nginx.org/packages/mainline/debian `lsb_release -cs` nginx" | \
-sudo tee /etc/apt/sources.list.d/nginx.list
-```
-
-1. Set up repository pinning to prefer our packages over distribution-provided ones:
-
-```shell
-echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" | \
-sudo tee /etc/apt/preferences.d/99nginx
-```
-
-1. Add the NGINX App Protect WAF v5 repository:
-
-```shell
-printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-https://pkgs.nginx.com/app-protect-x-oss/debian `lsb_release -cs` nginx-plus\n" | \
-sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
-```
-
-1. Install the NGINX App Protect WAF v5 package:
-
-```shell
-sudo apt-get update
-sudo apt-get install nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
-```
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-debian.md" >}}
 
 {{%/tab%}}
 
 {{%tab name="Oracle Linux"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos-7.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos.md" >}}
 
 {{%/tab%}}
 
 {{%tab name="RHEL"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos-7.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos.md" >}}
 
 {{%/tab%}}
 
@@ -219,133 +143,47 @@ Then you can move onto the next step, depending on your chosen operating system.
 
 {{%tab name="Amazon Linux"%}}
 
-1. Download the NGINX Plus repository file [plus-amazonlinux2023.repo](https://cs.nginx.com/static/files/plus-amazonlinux2023.repo) to `/etc/yum.repos.d`:
-
-    ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
-    ```
-
-1. Create NGINX App Protect WAF v5 repository file, named `/etc/yum.repos.d/app-protect-x-plus.repo` with the following contents:
-
-    ```none
-    [app-protect-x-plus]
-    name=nginx-app-protect repo
-    baseurl=https://pkgs.nginx.com/app-protect-x-plus/amzn/2023/$basearch/
-    sslclientcert=/etc/ssl/nginx/nginx-repo.crt
-    sslclientkey=/etc/ssl/nginx/nginx-repo.key
-    gpgcheck=0
-    enabled=1
-    ```
-
-
-3. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo dnf install app-protect-module-plus
-    ```
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-amazon.md" >}}
 
 {{%/tab%}}
 
-{{%tab name="Debian 11"%}}
+{{%tab name="Debian"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-debian.md" >}}
 
-3. Install the NGINX App Protect WAF v5 package:
+{{%/tab%}}
 
-    ```shell
-    sudo apt-get update
-    sudo apt-get install app-protect-module-plus
-    ```
+{{%tab name="Oracle Linux / RHEL 8.1+"%}}
+
+Download the NGINX Plus repository file [nginx-plus-8.repo](https://cs.nginx.com/static/files/nginx-plus-8.repo) to `/etc/yum.repos.d`:
+
+```shell
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
+```
+
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
+
 
 {{%/tab%}}
-{{%tab name="Debian 12"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-debian.md" >}}
-
-3. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo apt-get update
-    sudo apt-get install app-protect-module-plus
-    ```
-
-{{%/tab%}}
-{{%tab name="Oracle Linux 8.1+"%}}
-
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-8.md" >}}
-
-3. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo dnf install app-protect-module-plus
-    ```
-
-{{%/tab%}}
-{{%tab name="RHEL 7.4+"%}}
-
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-7.md" >}}
-
-{{%/tab%}}
-{{%tab name="RHEL 8.1+"%}}
-
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-8.md" >}}
-
-3. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo dnf install app-protect-module-plus
-    ```
-
-{{%/tab%}}
 {{%tab name="RHEL 9"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-9.md" >}}
+Download the NGINX Plus repository file [plus-9.repo](https://cs.nginx.com/static/files/plus-9.repo) to `/etc/yum.repos.d`:
 
-3. Install the NGINX App Protect WAF v5 package:
+```shell
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
+```
 
-    ```shell
-    sudo dnf install app-protect-module-plus
-    ```
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
 
 {{%/tab%}}
-{{%tab name="Ubuntu 20.04"%}}
+
+{{%tab name="Ubuntu"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-ubuntu.md" >}}
 
-3. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo apt-get update
-    sudo apt-get install app-protect-module-plus
-    ```
-
 {{%/tab%}}
-{{%tab name="Ubuntu 22.04"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-ubuntu.md" >}}
-
-3. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo apt-get update
-    sudo apt-get install app-protect-module-plus
-    ```
-    
-
-{{%/tab%}}
-{{%tab name="Ubuntu 24.04"%}}
-
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-ubuntu.md" >}}
-
-3. Install the NGINX App Protect WAF v5 package:
-
-    ```shell
-    sudo apt-get update
-    sudo apt-get install app-protect-module-plus
-    ```
-    
-
-{{%/tab%}}
 {{</tabs>}}
 
 ---
@@ -510,7 +348,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
 
 {{%tab name="Amazon Linux 2023"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-amzn2023.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-amazon.md" >}}
 
 {{%/tab%}}
 {{%tab name="Debian 11"%}}
@@ -639,7 +477,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
 {{%/tab%}}
 {{%tab name="Amazon Linux 2023"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-amzn2023.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-amazon.md" >}}
 
 3. Download all NGINX Open Source packages, including all dependencies: We used `repotrack` for example:
     
@@ -684,9 +522,11 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
     ```
 
 {{%/tab%}}
+
 {{%tab name="Oracle Linux 8.1+"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos-8.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos.md" >}}
+
 
 3. Download all NGINX Open Source packages, including all dependencies: We used `repotrack` for example:
     
@@ -703,9 +543,10 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
     ```
 
 {{%/tab%}}
+
 {{%tab name="RHEL 8.1+"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos-8.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos.md" >}}
 
 3. Download all NGINX Open Source packages, including all dependencies: We used `repotrack` for example:
     
@@ -724,7 +565,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
 {{%/tab%}}
 {{%tab name="RHEL 9"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos-9.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos.md" >}}
 
 3. Download all NGINX Open Source packages, including all dependencies: We used `repotrack` for example:
     
@@ -815,7 +656,7 @@ Then you can move onto the next step, depending on your chosen operating system.
 
 {{%tab name="Amazon Linux 2023"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-amzn2023.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-amazon.md" >}}
 
 3. Download all NGINX Plus packages, including all dependencies: We used repotrack for example:
     
@@ -862,7 +703,7 @@ Then you can move onto the next step, depending on your chosen operating system.
 {{%/tab%}}
 {{%tab name="Oracle Linux 8.1+"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-8.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
 
 3. Download all NGINX Plus packages, including all dependencies: We used repotrack for example:
     
@@ -881,7 +722,7 @@ Then you can move onto the next step, depending on your chosen operating system.
 {{%/tab%}} 
 {{%tab name="RHEL 8.1+"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-8.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
 
 3. Download all NGINX Plus packages, including all dependencies: We used repotrack for example:
     
@@ -900,7 +741,7 @@ Then you can move onto the next step, depending on your chosen operating system.
 {{%/tab%}}
 {{%tab name="RHEL 9"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-9.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
 
 3. Download all NGINX Plus packages, including all dependencies: We used repotrack for example:
     
