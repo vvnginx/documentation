@@ -52,7 +52,7 @@ Open a pull request when you are ready to receive feedback from stakeholders.
 
 After any iterative work, close the pull request. Since the closed repository is a mirror of the open one, we do not merge changes to it.
 
-You should instead open a PR in the main repository by adding the closed repository as a remote.
+You should instead open a pull request in the main repository by adding the closed repository as a remote.
 
 ```bash
 git clone git@github.com:nginx/documentation.git
