@@ -4,7 +4,7 @@ This repository is public, and we do as much of our work as possible in the publ
 
 Content which cannot be publicised before release is handled slightly differently: please read the [Contributing guidelines for closed content](/CLOSED_CONTRIBUTIONS.md) document.
 
-Before new content is published at https://docs.nginx.com, it must be commited to this `documentation` repository. 
+Before new content is published at https://docs.nginx.com, it must be committed to this `documentation` repository. 
 
 If you are unable to assign yourself as an owner of an issue or a reviewer of a pull request, and are an employee of F5, ask a member of the NGINX documentation team for help.
 

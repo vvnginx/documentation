@@ -1,8 +1,8 @@
 # Contributing guidelines for closed content
 
-This document describes the process for authoring "closed content", which is content of a commercially sensitive nature that cannot be publicised before release.
+This document describes the process for authoring "closed content", which is content of a sensitive nature that cannot be publicised before release.
 
-Commercially sensitive content might include:
+Sensitive content might include:
 
 - Security content, including personally identifying information (PII).
 - Content / features that are not yet ready to be announced.
