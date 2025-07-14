@@ -270,6 +270,81 @@ error when creating the nginx repo retriever - NGINX repo certificates not found
 
 If needed, you can also [install the WAF compiler manually](#install-the-waf-compiler).
 
+## Installing WAF compiler in Disconnected environments
+
+This involves below two steps 
+Step-1. Generating the WAF compiler package on the system which has internet access
+Step-2. Moving the generated package to the target system ( which do not have internet access) and installing the compiler package
+
+### Steps for RHEL based systems ( RHEL8 and RHEL9)
+
+Step-1 : ( To be performed on system with Internet access)
+
+Place your nginx-repo.crt and nginx-repo.key files in this machine.
+```bash
+sudo yum update -y
+sudo yum install yum-utils -y
+sudo mkdir -p /etc/ssl/nginx/
+sudo mv nginx-repo.crt /etc/ssl/nginx/
+sudo mv nginx-repo.key /etc/ssl/nginx/
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms.repo
+sudo yum-config-manager --disable rhel-9-appstream-rhui-rpms
+sudo yum update -y
+sudo mkdir -p nms-nap-compiler
+sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.342.0
+tar -czvf compiler.tar.gz nms-nap-compiler/
+```
+
+Step-2 : ( On target system)
+
+Prior to execution of below steps, make sure all the OS modules/libraries are updated ( especially glibc). 
+Move the compiler.tar.gz file generated in the previous step to this target system.
+
+```bash
+tar -xzvf compiler.tar.gz
+cd nms-nap-compiler
+sudo dnf install *.rpm --disablerepo=*
+```
+
+### Steps for Ubuntu systems ( Ubuntu-22.04 & Ubuntu-24.04)
+
+Step-1 : ( To be performed on system with Internet access)
+
+Place your nginx-repo.crt and nginx-repo.key files in this machine.
+```bash
+sudo apt-get update -y
+sudo mkdir -p /etc/ssl/nginx/
+sudo mv nginx-repo.crt /etc/ssl/nginx/
+sudo mv nginx-repo.key /etc/ssl/nginx/
+
+wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key \
+    | gpg --dearmor \
+    | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+
+printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+https://pkgs.nginx.com/nms/ubuntu $(lsb_release -cs) nginx-plus\n" | \
+sudo tee /etc/apt/sources.list.d/nms.list
+
+sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
+mkdir -p compiler && cd compiler
+sudo apt-get update
+sudo apt-get download nms-nap-compiler-v5.342.0
+cd ../
+mkdir -p compiler/compiler.deps
+sudo apt-get install --download-only --reinstall --yes --print-uris nms-nap-compiler-v5.342.0 | grep ^\' | cut -d\' -f2 | xargs -n 1 wget -P ./compiler/compiler.deps
+tar -czvf compiler.tar.gz compiler/
+```
+
+Step-2 : ( On target system)
+
+Prior to execution of below steps, make sure all the OS modules/libraries are updated ( especially glibc). 
+Move the compiler.tar.gz file generated in the previous step to this target system.
+
+```bash
+tar -xzvf compiler.tar.gz
+sudo dpkg -i ./compiler/compiler.deps/*.deb
+sudo dpkg -i ./compiler/*.deb
+```
 ---
 
 ## Set up attack signatures and threat campaigns
