@@ -212,37 +212,11 @@ This involves below two steps
 Step-1. Generating the WAF compiler package on the system which has internet access
 Step-2. Moving the generated package to the target system ( which do not have internet access) and installing the compiler package
 
-### Steps for RHEL based systems ( RHEL8 and RHEL9)
+{{<tabs name="WAF compiler installation in offline environment">}}
 
-Step-1 : ( To be performed on system with Internet access)
+{{%tab name="Ubuntu"%}}
 
-Place your nginx-repo.crt and nginx-repo.key files in this machine.
-```bash
-sudo yum update -y
-sudo yum install yum-utils -y
-sudo mkdir -p /etc/ssl/nginx/
-sudo mv nginx-repo.crt /etc/ssl/nginx/
-sudo mv nginx-repo.key /etc/ssl/nginx/
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms.repo
-sudo yum-config-manager --disable rhel-9-appstream-rhui-rpms
-sudo yum update -y
-sudo mkdir -p nms-nap-compiler
-sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.342.0
-tar -czvf compiler.tar.gz nms-nap-compiler/
-```
-
-Step-2 : ( On target system)
-
-Prior to execution of below steps, make sure all the OS modules/libraries are updated ( especially glibc). 
-Move the compiler.tar.gz file generated in the previous step to this target system.
-
-```bash
-tar -xzvf compiler.tar.gz
-cd nms-nap-compiler
-sudo dnf install *.rpm --disablerepo=*
-```
-
-### Steps for Ubuntu systems ( Ubuntu-22.04 & Ubuntu-24.04)
+### Install WAF compiler on Ubuntu-24.04, Ubuntu-22.04 and Ubuntu-20.04 systems
 
 Step-1 : ( To be performed on system with Internet access)
 
@@ -281,6 +255,133 @@ tar -xzvf compiler.tar.gz
 sudo dpkg -i ./compiler/compiler.deps/*.deb
 sudo dpkg -i ./compiler/*.deb
 ```
+
+{{%/tab%}}
+
+{{%tab name="Debian"%}}
+
+### Install WAF compiler on Debian-11 and Debian-12 systems
+
+Step-1 : ( To be performed on system with Internet access)
+
+Place your nginx-repo.crt and nginx-repo.key files in this machine.
+```bash
+sudo apt-get update -y
+sudo mkdir -p /etc/ssl/nginx/
+sudo mv nginx-repo.crt /etc/ssl/nginx/
+sudo mv nginx-repo.key /etc/ssl/nginx/
+
+wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key \
+    | gpg --dearmor \
+    | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+
+printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+https://pkgs.nginx.com/nms/debian $(lsb_release -cs) nginx-plus\n" | \
+sudo tee /etc/apt/sources.list.d/nms.list
+
+sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
+mkdir -p compiler && cd compiler
+sudo apt-get update
+sudo apt-get download nms-nap-compiler-v5.342.0
+cd ../
+mkdir -p compiler/compiler.deps
+sudo apt-get install --download-only --reinstall --yes --print-uris nms-nap-compiler-v5.342.0 | grep ^\' | cut -d\' -f2 | xargs -n 1 wget -P ./compiler/compiler.deps
+tar -czvf compiler.tar.gz compiler/
+```
+
+Step-2 : ( On target system)
+
+Prior to execution of below steps, make sure all the OS modules/libraries are updated ( especially glibc). 
+Move the compiler.tar.gz file generated in the previous step to this target system.
+
+```bash
+tar -xzvf compiler.tar.gz
+sudo dpkg -i ./compiler/compiler.deps/*.deb
+sudo dpkg -i ./compiler/*.deb
+```
+
+{{%/tab%}}
+
+{{%tab name="RHEL8, RHEL9, Oracle-9 "%}}
+
+###  Install WAF compiler on RHEL-8 and RHEL-9 systems
+
+Step-1 : ( To be performed on system with Internet access)
+
+Note: For Rhel-8, we can omit the line 'sudo yum-config-manager ....'
+
+Place your nginx-repo.crt and nginx-repo.key files in this machine.
+```bash
+sudo yum update -y
+sudo yum install yum-utils -y
+sudo mkdir -p /etc/ssl/nginx/
+sudo mv nginx-repo.crt /etc/ssl/nginx/
+sudo mv nginx-repo.key /etc/ssl/nginx/
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms.repo
+sudo yum-config-manager --disable rhel-9-appstream-rhui-rpms
+sudo yum update -y
+sudo mkdir -p nms-nap-compiler
+sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.342.0
+tar -czvf compiler.tar.gz nms-nap-compiler/
+```
+
+Step-2 : ( On target system)
+
+Prior to execution of below steps, make sure all the OS modules/libraries are updated ( especially glibc). 
+Move the compiler.tar.gz file generated in the previous step to this target system.
+
+```bash
+tar -xzvf compiler.tar.gz
+cd nms-nap-compiler
+sudo dnf install *.rpm --disablerepo=*
+```
+
+{{%/tab%}}
+
+{{%tab name="Oracle-8"%}}
+
+###  Install WAF compiler on Oracle-8 system
+
+Place your nginx-repo.crt and nginx-repo.key files in this machine.
+```bash
+sudo yum update -y
+sudo yum install yum-utils tar -y
+sudo mkdir -p /etc/ssl/nginx/
+sudo mv nginx-repo.crt /etc/ssl/nginx/
+sudo mv nginx-repo.key /etc/ssl/nginx/
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms.repo
+
+sudo tee /etc/yum.repos.d/centos-vault-powertools.repo << 'EOF'
+[centos-vault-powertools]
+name=CentOS Vault - PowerTools
+baseurl=https://vault.centos.org/centos/8/PowerTools/x86_64/os/
+enabled=1
+gpgcheck=0
+EOF
+
+sudo yum update -y
+sudo mkdir -p nms-nap-compiler
+sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.342.0
+tar -czvf compiler.tar.gz nms-nap-compiler/
+```
+
+Step-2 : ( On target system)
+
+Prior to execution of below steps, make sure all the OS modules/libraries are updated ( especially glibc). 
+Move the compiler.tar.gz file generated in the previous step to this target system.
+
+```bash
+sudo yum install tar -y
+tar -xzvf compiler.tar.gz
+sudo dnf install --disablerepo=* nms-nap-compiler/*.rpm
+```
+
+
+{{%/tab%}}
+
+
+{{</tabs>}}
+
 ---
 
 ## Set Up Attack Signatures and Threat Campaigns
