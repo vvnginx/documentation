@@ -341,9 +341,11 @@ sudo dnf install *.rpm --disablerepo=*
 
 {{%tab name="Oracle-8"%}}
 
-###  Install WAF compiler on Oracle-8 system
+### Install on Oracle Linux 8
 
-Place your nginx-repo.crt and nginx-repo.key files in this machine.
+#### Step 1: On a system with internet access
+
+Place your `nginx-repo.crt` and `nginx-repo.key` files on this system.
 ```bash
 sudo yum update -y
 sudo yum install yum-utils tar -y
