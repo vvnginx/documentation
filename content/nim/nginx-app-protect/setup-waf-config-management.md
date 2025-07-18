@@ -217,11 +217,11 @@ To install the WAF compiler on a system without internet access, complete these 
 
 {{%tab name="Ubuntu"%}}
 
-### Install WAF compiler on Ubuntu-24.04, Ubuntu-22.04 and Ubuntu-20.04 systems
+### Install on Ubuntu 24.04, 22.04, and 20.04
 
-Step-1 : ( To be performed on system with Internet access)
+#### Step 1: On a system with internet access
 
-Place your nginx-repo.crt and nginx-repo.key files in this machine.
+Place your `nginx-repo.crt` and `nginx-repo.key` files on this system.
 ```bash
 sudo apt-get update -y
 sudo mkdir -p /etc/ssl/nginx/
