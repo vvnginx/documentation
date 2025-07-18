@@ -369,13 +369,13 @@ sudo dpkg -i ./compiler/*.deb
 
 {{%tab name="RHEL8, RHEL9, Oracle-9 "%}}
 
-###  Install WAF compiler on RHEL-8 and RHEL-9 systems
+### Install on RHEL 8, RHEL 9, or Oracle Linux 9
 
-Step-1 : ( To be performed on system with Internet access)
+#### Step 1: On a system with internet access
 
-Note: For Rhel-8, we can omit the line 'sudo yum-config-manager ....'
+> For RHEL 8, you can skip the `yum-config-manager` line.
 
-Place your nginx-repo.crt and nginx-repo.key files in this machine.
+Place your `nginx-repo.crt` and `nginx-repo.key` files on this system.
 ```bash
 sudo yum update -y
 sudo yum install yum-utils -y
