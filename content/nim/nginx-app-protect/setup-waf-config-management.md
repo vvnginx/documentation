@@ -368,10 +368,10 @@ sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.342.
 tar -czvf compiler.tar.gz nms-nap-compiler/
 ```
 
-Step-2 : ( On target system)
+#### Step 2: On the target (offline) system
 
-Prior to execution of below steps, make sure all the OS modules/libraries are updated ( especially glibc). 
-Move the compiler.tar.gz file generated in the previous step to this target system.
+Before running the steps, make sure the OS libraries are up to date, especially `glibc`.  
+Move the `compiler.tar.gz` file from Step 1 to this system.
 
 ```bash
 sudo yum install tar -y
