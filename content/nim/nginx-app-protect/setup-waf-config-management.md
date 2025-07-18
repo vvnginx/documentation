@@ -261,11 +261,11 @@ sudo dpkg -i ./compiler/*.deb
 
 {{%tab name="Debian"%}}
 
-### Install WAF compiler on Debian-11 and Debian-12 systems
+### Install on Debian 11 and 12
 
-Step-1 : ( To be performed on system with Internet access)
+#### Step 1: On a system with internet access
 
-Place your nginx-repo.crt and nginx-repo.key files in this machine.
+Place your `nginx-repo.crt` and `nginx-repo.key` files on this system.
 ```bash
 sudo apt-get update -y
 sudo mkdir -p /etc/ssl/nginx/
