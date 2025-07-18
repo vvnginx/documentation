@@ -206,11 +206,12 @@ error when creating the nginx repo retriever - NGINX repo certificates not found
 
 Also, please refer to [Install the WAF Compiler](#install-the-waf-compiler) for details on how to manually install the new WAF compiler.
 
-## Installing WAF compiler in Disconnected environments
+## Install the WAF compiler in a disconnected environment
 
-This involves below two steps 
-Step-1. Generating the WAF compiler package on the system which has internet access
-Step-2. Moving the generated package to the target system ( which do not have internet access) and installing the compiler package
+To install the WAF compiler on a system without internet access, complete these steps:
+
+- **Step 1:** Generate the WAF compiler package on a system that has internet access.  
+- **Step 2:** Move the generated package to the offline target system and install it.
 
 {{<tabs name="WAF compiler installation in offline environment">}}
 
